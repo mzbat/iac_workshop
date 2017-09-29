@@ -4,3 +4,6 @@
 
 # Module directory
 .terraform/
+
+# This has some private key info
+terraform/aws/terraform.tfvars
