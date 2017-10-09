@@ -25,8 +25,8 @@ variable "key_name" {
 
 # You can update this to match your personal public SSH key half.
 variable "public_key" {
-  default = "ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAx1h+XE/b0xLyPTXbsStgvmHnYPxTIMVe4gVcnpuQBwf3j0OtCxmR8Pm9OCe83QgsWUN9q4593uFJEE+yXki5d0VCJFRbvMOEoGPLin9W2VghoJj616c5VxEIWUJlhBgFVGCtQ3YIp/O2KQ4GdKtaZdoae3hSZ9brGXZAhaxf8pmLxANmlMQO99GMD0BTW6uEUPM0Qsd1TnDCKz0RYpEjHhdSwcXro0OpATRM+Fl2W5BM0icKnmF/QnulwvwON+2FHwMy8HLkHuJd2MWmr8GD0axnogUdatVJnvTaqOc0tjM+NAuYwCm+IdAnTomDNXq31oazzsH8E6VUzx9x18dEiQ== fdiaz@exacttartget.com"
-  description = "SSH Public key half to use for centos on the new stems host"
+  default = "ssh-dss AAAAB3NzaC1kc3MAAACBAPTAkyDjaJBi9jQqYvsU2Labl1+Yl4ag0iWvXq1+TngcNAkftwzxEQ+GnLubzpPOgoGkym8a02KeIy+1fP8+kHMcWAbYNGlFu3Pn3naAFgQsHhlfiQGhqXeIV2VSs7cXOtNm4JmADMY5gKPM5zOh4gJRvGSgbz86wvNEU4Vru5kpAAAAFQDCNNMyW6b/VU8PxnQg9hPeUaTTdwAAAIEAzPJqOc8M+Pv9Els347XPpJSqPUzg9vQFDVsFcFwO8ADslSl4JT/1rhRdrb9MozOT2/ro322PcZCzwYdalfCGtiaeISMflP4xKy8YcikxAaJIOfdnfmZTeBEacq7pkK3tvNpFlf2had+6WlKVEmhHk5k4gMulf2+dHcnMt9iGnJMAAACBALZNMdS+5Ow2HzgAIfXyri9btJJn4ErND0QxZxJylgkMCz9pbCNf1CKeHaqB6LlEbrXLxa8uPdqOfAfMZe+T5QT67qSVYJFdLb9OwY1oBVd6IK+odozke3QivwfjoKvmfueHZJFo+9w4OVGKlhgqIu5Yy4JBw6Yui38QInY80cSM thedevilsvoice@grimoire"
+  description = "SSH Public key half to use for centos on the new host"
 }
 
 variable "key_path" {

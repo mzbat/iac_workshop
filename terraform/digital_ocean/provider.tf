@@ -8,7 +8,7 @@ provider "digitalocean" {
 }
 
 # Create a new SSH key
-resource "digitalocean_ssh_key" "default" {
-  name       = "Terraform Example"
-  public_key = "${file("/home/thedevilsvoice/.ssh/id_dsa.pub")}"
-}
+#resource "digitalocean_ssh_key" "default" {
+#  name       = "Terraform Example"
+#  public_key = "${file("/home/thedevilsvoice/.ssh/do_terra_rsa.pub")}"
+#}
