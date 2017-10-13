@@ -18,12 +18,22 @@ systemctl restart puppetmaster
 if [ ! -d  /etc/puppet/modules/accounts ] ; then
   mkdir -p /etc/puppet/modules/accounts
 fi
-cd /etc/puppet/modules/accounts
-if [ ! -d {examples,files,manifests,templates} ] ; then
-  mkdir {examples,files,manifests,templates}
-fi
 
-cd manifests
+if [ ! -d /etc/puppet/modules/accounts/examples ] ; then
+  mkdir /etc/puppet/modules/accounts/examples
+fi 
+
+if [ ! -d /etc/puppet/modules/accounts/files ] ; then 
+  mkdir /etc/puppet/modules/accounts/files
+fi 
+
+if [ ! -d /etc/puppet/modules/accounts/manifests ] ; then
+  mkdir /etc/puppet/modules/accounts/manifests
+fi 
+
+if [ ! -d /etc/puppet/modules/accounts/templates ] ; then
+  mkdir /etc/puppet/modules/accounts/templates}
+fi
 
 cat << EOF > /etc/puppet/modules/accounts/manifests/init.pp
 class accounts {
@@ -35,7 +45,7 @@ class accounts {
     'RedHat'  => 'wheel',
     default   => warning('This distribution is not supported by the Accounts module'),
   }
-`
+
   user { 'franklin':
     ensure      => present,
     home        => '/home/franklin',

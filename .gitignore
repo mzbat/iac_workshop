@@ -9,3 +9,5 @@
 terraform/aws/terraform.tfvars
 #
 .terraform.tfstate.lock.info
+
+*.log
