@@ -46,8 +46,13 @@ if [ ! -f ~/.aws/credentials ] ; then
   echo -e "${YELLOW}"
   echo "No ~/.aws/credentials found!"
   echo "Follow the steps at: http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html"
+  echo ""
   echo -e "${NC}"
   ERROR_COUNTER=$((ERROR_COUNTER+1))
+else 
+  echo -e "${CYAN}"
+  echo "AWS Configuration looking good..."
+  echo -e "${NC}"
 fi
 
 echo -e "${LPURP}***** Check  for terraform.tfvars file *****${NC}"
@@ -76,6 +81,13 @@ else
   echo -e "${YELLOW}"
   echo "Digial Ocean TF_VARS not found in .bashrc!"
   echo "Digital Ocean provisioning won't work right."
+  echo ""
+  echo "Be sure these are added to the end of .bashrc:"
+  echo "" 
+  echo "export TF_VAR_do_token="
+  echo "export TF_VAR_pub_key="
+  echo "export TF_VAR_pvt_key="
+  echo "export TF_VAR_ssh_fingerprint="
   echo -e "${NC}"
   ERROR_COUNTER=$((ERROR_COUNTER+1))
 fi
