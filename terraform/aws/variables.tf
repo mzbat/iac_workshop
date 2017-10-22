@@ -8,7 +8,7 @@ variable "aws_region" {
 
 variable "availability_zone" {
   description = "Availability Zone"
-  default = "us-west-2b"
+  default = "us-west-2c"
 }
 
 variable "amis" {

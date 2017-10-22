@@ -17,6 +17,13 @@ aws_secret_key = "ljasd\fjlkjasdfl\kjasdflkajd98345"
 
 Edit the "key_name" and "key_path" variables in the file variables.tf
 
+* Add the ssh key to the agent
+
+```
+thedevilsvoice@grimoire:77%:~/workspace/iac_workshop/terraform/aws$ ssh-add ~/.ssh/do_terra_rsa
+Identity added: /home/thedevilsvoice/.ssh/do_terra_rsa (/home/thedevilsvoice/.ssh/do_terra_rsa)
+```
+
 * apply the puppet configuration
 
 Finally, you run puppet to apply the configuration to the host.

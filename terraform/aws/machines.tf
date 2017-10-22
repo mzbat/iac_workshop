@@ -14,18 +14,15 @@ resource "aws_instance" "franklin-iac" {
   tags {
     Name = "franklin-iac"
   }
-  #provisioner "file" {
-  #  source      = "conf/provision.sh"
-  #  destination = "/home/centos/provision.sh"
-  #}
+  provisioner "file" {
+    source      = "conf/conf.sh"
+    destination = "/home/centos/conf.sh"
+  }
   provisioner "remote-exec" {
     inline = [
       "export PATH=$PATH:/usr/bin",
-      "sudo yum update -y",
+      #"sudo yum update -y",
       "sudo hostnamectl set-hostname iac-web --static",
-      #"sudo /bin/bash /home/centos/provision.sh",
-      #"sudo aws --no-sign-request s3 sync --exclude \".git/*\" s3://repo/puppet/ /etc/puppetlabs/"
-      #"sudo /opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/production/manifests/site.pp"
     ]
   }
 }

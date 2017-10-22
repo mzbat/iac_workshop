@@ -20,4 +20,11 @@ fi
 
 if [ ! -f terraform.tfvars ] ; then
   echo "Add aws_access_key and aws_secret_key to file terraform.tfvars"
-  fiexit 0
+  exit 0
+fi
+
+terraform apply
+sudo /home/centos/conf.sh
+#"sudo aws --no-sign-request s3 sync --exclude \".git/*\" s3://repo/puppet/ /etc/puppetlabs/"
+#"sudo /opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/production/manifests/site.pp"
+
