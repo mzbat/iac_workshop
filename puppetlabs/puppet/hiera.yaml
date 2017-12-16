@@ -1,0 +1,10 @@
+---
+:backends:
+  - yaml
+:hierarchy:
+    # a directory called nodes with files like hostname.yaml
+  - "nodes/%{::trusted.certname}"
+    # OS spcefic yaml files e.g. Debian.yaml
+  - - "%{facts.os.family}"
+    # common.yaml
+  - common

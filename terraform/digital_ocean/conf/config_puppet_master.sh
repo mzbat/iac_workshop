@@ -32,42 +32,8 @@ if [ ! -d /etc/puppet/modules/accounts/manifests ] ; then
 fi 
 
 if [ ! -d /etc/puppet/modules/accounts/templates ] ; then
-  mkdir /etc/puppet/modules/accounts/templates}
+  mkdir /etc/puppet/modules/accounts/templates
 fi
-
-cat << EOF > /etc/puppet/modules/accounts/manifests/init.pp
-class accounts {
-  
-  include groups
-
-  $rootgroup = $osfamily ? {
-    'Debian'  => 'sudo',
-    'RedHat'  => 'wheel',
-    default   => warning('This distribution is not supported by the Accounts module'),
-  }
-
-  user { 'franklin':
-    ensure      => present,
-    home        => '/home/franklin',
-    shell       => '/bin/bash',
-    managehome  => true,
-    gid         => 'engr',
-    groups      => "$rootgroup",
-    password    => '$1$eiZnsE6i$ikxFucK5yOH1syHqlY.l/1',
-  }
-
-  user { 'mzbat':
-    ensure      => present,
-    home        => '/home/mzbat',
-    shell       => '/bin/bash',
-    managehome  => true,
-    gid         => 'engr',
-    groups      => "$rootgroup",
-  }
-
-
-}
-EOF
 
 cat << EOF > /etc/puppet/modules/accounts/manifests/groups.pp
 class accounts::groups {

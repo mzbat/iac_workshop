@@ -1,7 +1,7 @@
 #!/bin/bash
 #
 # Description: 
-# Author:    
+# Author:      @theDevilsVoice
 # Date:        Sep 8, 2017
 #
 

@@ -22,6 +22,11 @@ resource "digitalocean_droplet" "puppet-master" {
   }
 
   provisioner "file" {
+    source      = "conf/init.pp"
+    destination = "/etc/puppet/modules/accounts/init.pp"
+  }
+
+  provisioner "file" {
     source      = "conf/config_puppet_master.sh"
     destination = "/root/config_puppet_master.sh"
   }
@@ -37,7 +42,10 @@ resource "digitalocean_droplet" "puppet-master" {
       "apt-get update && apt-get upgrade --yes --force-yes --force-confdef",
       #"apt-get install puppetserver -y",
       "apt install puppetmaster-passenger --yes --force-yes",
+      "puppet resource package puppetmaster ensure=latest",
       "bash /root/config_puppet_master.sh",
+      "grep -q -F 'dns_alt_names=puppet,puppet.bitsmasher.net'  /etc/puppet/puppet.conf || echo 'dns_alt_names=puppet,puppet.bitsmasher.net' >> /etc/puppet/puppet.conf",
+      "systemctl start puppetmaster",
     ]
   }
 }
