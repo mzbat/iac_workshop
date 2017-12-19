@@ -44,3 +44,9 @@ class accounts::groups {
           
 }
 EOF
+
+#git config --global color.ui true
+#git config --global user.name "YOUR NAME"
+#git config --global user.email "YOUR@EMAIL.com"
+echo "gem: --no-document" > ~/.gemrc
+gem install puppet-lint

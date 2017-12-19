@@ -92,6 +92,19 @@ else
   ERROR_COUNTER=$((ERROR_COUNTER+1))
 fi
 
+# Check for puppet-lint 
+echo -e "${LPURP}***** Check if puppet-lint is installed *****${NC}"
+PL=`gem list -i \"^puppet-lint$" `
+if [ ! $PL ] ; then
+  echo -e "${YELLOW}"
+  echo "Could not find puppet-lint installed on this host"
+  echo "Get it from http://puppet-lint.com/"
+  echo -e "${NC}"
+  # This isn't really a showstopper so not counting as an error
+  #ERROR_COUNTER=$((ERROR_COUNTER+1))
+fi
+ 
+
 # Do stuff for Debian based 
 echo -e "${LPURP}***** Check for Debian System *****${NC}"
 if [ "$(grep -Ei 'debian|buntu|mint' /etc/*release)" ]; then

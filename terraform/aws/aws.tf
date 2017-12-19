@@ -40,5 +40,5 @@ resource "aws_key_pair" "franklin" {
 }
 
 output "sensor_ip" {
-  value = "Now do this: \n ssh -i ~/.ssh/id_rsa -l centos ${aws_instance.franklin-iac.public_ip}"
+  value = "Now do this: \n ssh -i ${var.key_path} -l centos ${aws_instance.franklin-iac.public_ip}"
 }

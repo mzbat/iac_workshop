@@ -2,7 +2,8 @@ resource "aws_instance" "franklin-iac" {
   connection {
     user        = "centos"
     timeout     = "1m"
-    agent       = true
+    #agent       = false
+    private_key = "${file("/home/thedevilsvoice/.ssh/do_terra_rsa")}"
   }
   ami           = "ami-d2c924b2"
   instance_type = "t2.micro"
@@ -23,6 +24,7 @@ resource "aws_instance" "franklin-iac" {
       "export PATH=$PATH:/usr/bin",
       #"sudo yum update -y",
       "sudo hostnamectl set-hostname iac-web --static",
+      #"sudo bash /home/centos/conf.sh",
     ]
   }
 }
