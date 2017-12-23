@@ -16,7 +16,7 @@ resource "aws_instance" "franklin-iac" {
     Name = "franklin-iac"
   }
   provisioner "file" {
-    source      = "conf/conf.sh"
+    source      = "conf/conf_centos.sh"
     destination = "/home/centos/conf.sh"
   }
   provisioner "remote-exec" {
@@ -24,7 +24,7 @@ resource "aws_instance" "franklin-iac" {
       "export PATH=$PATH:/usr/bin",
       #"sudo yum update -y",
       "sudo hostnamectl set-hostname iac-web --static",
-      #"sudo bash /home/centos/conf.sh",
+      #"sudo bash /home/centos/conf_centos.sh",
     ]
   }
 }

@@ -10,6 +10,7 @@ systemctl stop apache2
 puppet resource package puppetmaster ensure=latest
 
 sed '9 a  dns_alt_names=puppet.bitsmasher.net' /etc/puppet/puppet.conf
+sed -i '/master/a   autosign = true' /etc/puppet/puppet.conf 
 
 # 
 systemctl restart puppetmaster

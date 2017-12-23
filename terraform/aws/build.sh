@@ -1,8 +1,15 @@
 #!/bin/bash
 #
-# Description: 
-# Author:      @theDevilsVoice
-# Date:        Sep 8, 2017
+# Author: @theDevilsVoice
+# Date: 09/08/2017
+#
+# Script Name: config.sh
+#
+# Description: Use this shell script to ensure your system
+#
+# Run Information:
+#
+# Error Log: Any output found in /path/to/logfile
 #
 
 echo " "
@@ -24,7 +31,7 @@ if [ ! -f terraform.tfvars ] ; then
 fi
 
 terraform apply
-sudo /home/centos/conf.sh
+sudo /home/centos/conf_centos.sh
 #"sudo aws --no-sign-request s3 sync --exclude \".git/*\" s3://repo/puppet/ /etc/puppetlabs/"
 #"sudo /opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/production/manifests/site.pp"
 
