@@ -6,6 +6,11 @@ variable "aws_region" {
   default = "us-west-2"
 }
 
+variable "availability_zone" {
+  description = "Availability Zone"
+  default = "us-west-2c"
+}
+
 variable "amis" {
     description = "AMIs by region"
     default = {
@@ -19,18 +24,18 @@ variable "vpc-fullcidr" {
 }
 
 variable "key_name" {
-  default = "franklin"
+  default = "do_terra_rsa"
   description = "Name of your SSH key in EC2"
 }
 
 # You can update this to match your personal public SSH key half.
 variable "public_key" {
-  default = "ssh-dss AAAAB3NzaC1kc3MAAACBAPTAkyDjaJBi9jQqYvsU2Labl1+Yl4ag0iWvXq1+TngcNAkftwzxEQ+GnLubzpPOgoGkym8a02KeIy+1fP8+kHMcWAbYNGlFu3Pn3naAFgQsHhlfiQGhqXeIV2VSs7cXOtNm4JmADMY5gKPM5zOh4gJRvGSgbz86wvNEU4Vru5kpAAAAFQDCNNMyW6b/VU8PxnQg9hPeUaTTdwAAAIEAzPJqOc8M+Pv9Els347XPpJSqPUzg9vQFDVsFcFwO8ADslSl4JT/1rhRdrb9MozOT2/ro322PcZCzwYdalfCGtiaeISMflP4xKy8YcikxAaJIOfdnfmZTeBEacq7pkK3tvNpFlf2had+6WlKVEmhHk5k4gMulf2+dHcnMt9iGnJMAAACBALZNMdS+5Ow2HzgAIfXyri9btJJn4ErND0QxZxJylgkMCz9pbCNf1CKeHaqB6LlEbrXLxa8uPdqOfAfMZe+T5QT67qSVYJFdLb9OwY1oBVd6IK+odozke3QivwfjoKvmfueHZJFo+9w4OVGKlhgqIu5Yy4JBw6Yui38QInY80cSM thedevilsvoice@grimoire"
+  default="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDABuFmeNzJtKfq/BhI5okytxj9a7J+eDlUCPozZdasQyXq3DSy4pOUO3brYMSiTCUX0eQseUVXjzUO4C7OojZKZ8dONaiUrBvj8icKB137mDzq5iSAZrbdnIQdjiNZC3/DQ6W0PMHk4SZez0Z5oKikbP/l/E8zRxnfWJHXiogYogOdtqxZdx4SshDy2iPsReINFJNIwJJB0cbZB35fhxRAghSmf3MWjkPeHzLE+6fZD3HszzZ7g7ngDN1E5MRqH06tqeRDboTypOrH5CcUjergq2xwJ9/eSdbtrKY4uGG5U/6RTo0hA/kcLW9AmBsHlCvpn5YnLKhswETCkEOCsqHZ thedevilsvoice@grimoire"
   description = "SSH Public key half to use for centos on the new host"
 }
 
 variable "key_path" {
-  default = "/home/thedevilsvoice/.ssh/id_rsa"
+  default = "/home/thedevilsvoice/.ssh/do_terra_rsa"
   description = "Path to your SSH private key half on local dev machine"
 }
 
