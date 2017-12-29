@@ -24,7 +24,7 @@ resource "aws_instance" "franklin-iac" {
       "export PATH=$PATH:/usr/bin",
       #"sudo yum update -y",
       "sudo hostnamectl set-hostname iac-web --static",
-      #"sudo bash /home/centos/conf_centos.sh",
+      "sudo bash /home/centos/conf.sh",
     ]
   }
 }

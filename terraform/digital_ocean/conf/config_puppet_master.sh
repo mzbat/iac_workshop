@@ -6,48 +6,26 @@
 # avoid conflict with apache2 
 systemctl stop apache2
 
-# ensure you have the latest versionof puppet
-puppet resource package puppetmaster ensure=latest
-
-sed '9 a  dns_alt_names=puppet.bitsmasher.net' /etc/puppet/puppet.conf
-sed -i '/master/a   autosign = true' /etc/puppet/puppet.conf 
-
-# 
-systemctl restart puppetmaster
-
-#
-if [ ! -d  /etc/puppet/modules/accounts ] ; then
-  mkdir -p /etc/puppet/modules/accounts
-fi
-
-if [ ! -d /etc/puppet/modules/accounts/examples ] ; then
-  mkdir /etc/puppet/modules/accounts/examples
-fi 
-
-if [ ! -d /etc/puppet/modules/accounts/files ] ; then 
-  mkdir /etc/puppet/modules/accounts/files
-fi 
-
-if [ ! -d /etc/puppet/modules/accounts/manifests ] ; then
-  mkdir /etc/puppet/modules/accounts/manifests
-fi 
-
-if [ ! -d /etc/puppet/modules/accounts/templates ] ; then
-  mkdir /etc/puppet/modules/accounts/templates
-fi
-
-cat << EOF > /etc/puppet/modules/accounts/manifests/groups.pp
-class accounts::groups {
-        
-  group { 'engr':
-    ensure  => present,
-  }
-          
-}
-EOF
+# JAVA_ARGS="-Xms3g -Xmx3g -XX:MaxPermSize=256m"
+sed -e '/JAVA_ARGS/ s/^#*/#/' -i /etc/default/puppetserver
+LINE='JAVA_ARGS="-Xms3g -Xmx3g -XX:MaxPermSize=256m"'
+grep -qF "$LINE" /etc/default/puppetserver || echo "$LINE" >> /etc/default/puppetserver 
+#sed '9 a  dns_alt_names=puppet,puppet.bitsmasher.net' /etc/puppetlabs/puppet/puppet.conf
+#sed -i '/master/a   autosign = true' /etc/puppetlabs/puppet/puppet.conf 
+#grep -q -F 'dns_alt_names=puppet,puppet.bitsmasher.net'  /etc/puppet/puppet.conf || echo 'dns_alt_names=puppet,puppet.bitsmasher.net' >> /etc/puppet/puppet.conf
 
 #git config --global color.ui true
 #git config --global user.name "YOUR NAME"
 #git config --global user.email "YOUR@EMAIL.com"
 echo "gem: --no-document" > ~/.gemrc
-gem install puppet-lint
+#gem install puppet-lint
+ 
+# set the timezone
+#timedatectl list-timezones
+timedatectl set-timezone America/Indiana/Indianapolis
+apt-get -y install ntp
+
+systemctl start puppetserver
+systemctl enable puppetserver
+#systemctl is-active puppetserver
+systemctl status puppetserver

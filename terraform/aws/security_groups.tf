@@ -13,12 +13,14 @@ resource "aws_security_group" "iac_sec_grp" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  # HTTP access from the VPC
+  # Puppet access
   ingress {
-    from_port   = 80
-    to_port     = 80
+    from_port   = 8140
+    to_port     = 8140
     protocol    = "tcp"
-    cidr_blocks = ["10.0.0.0/16"]
+    # HTTP access from the VPC
+    #cidr_blocks = ["10.0.0.0/16"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   # outbound internet access
