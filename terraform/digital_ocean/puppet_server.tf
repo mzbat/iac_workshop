@@ -30,11 +30,11 @@ resource "digitalocean_droplet" "puppet-master" {
   provisioner "remote-exec" {
     inline = [
       "export PATH=$PATH:/usr/bin",
-      "cd /tmp && curl -O https://apt.puppetlabs.com/puppet-release-pc1-xenial.deb",
+      "cd /tmp && curl -O https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb",
       "dpkg -i /tmp/puppetlabs-release-pc1-xenial.deb",
       "apt-get update",
       "apt-get install -y puppetserver",
-      #"bash /root/config_puppet_master.sh",
+      "bash /root/config_puppet_master.sh",
     ]
   }
 }

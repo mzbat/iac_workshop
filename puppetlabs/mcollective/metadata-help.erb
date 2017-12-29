@@ -1,0 +1,18 @@
+<%= meta[:name] %>
+<%= "=" * meta[:name].size %>
+
+<%= meta[:description] %>
+
+      Author: <%= meta[:author] %>
+     Version: <%= meta[:version] %>
+     License: <%= meta[:license] %>
+     Timeout: <%= meta[:timeout] %>
+   Home Page: <%= meta[:url] %>
+% if requirements[:mcollective]
+
+   Requires MCollective <%= requirements[:mcollective] %> or newer
+% end
+% unless @usage == ""
+
+<%= Util.align_text(@usage, nil, 3) if @usage != "" %>
+% end

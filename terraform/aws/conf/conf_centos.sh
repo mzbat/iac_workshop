@@ -30,6 +30,7 @@ if ! grep -qs "$mount" /proc/mounts; then
 fi
 
 # Install puppet
+#http://yum.puppetlabs.com/puppetlabs-release-el-7.noarch.rpm
 rpm -ivh https://yum.puppetlabs.com/el/7/products/x86_64/puppetlabs-release-22.0-2.noarch.rpm
 yum install -y puppet
 
@@ -43,6 +44,8 @@ fi
 
 # Fix up puppet.conf
 sed -i '/main/a      server=puppet' /etc/puppet/puppet.conf 
+#gem install msgpack
+#sed -i '/main/a      preferred_serialization_format =  msgpack' /etc/puppet/puppet.conf
 systemctl restart puppet
 sudo systemctl enable puppet
 
