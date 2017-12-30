@@ -1,6 +1,10 @@
-file {'/tmp/it_works.txt':                        # resource type file and filename
-  ensure  => present,                             # make sure it exists
-  mode    => '0644',                              # file permissions
-  content => "It works on ${ipaddress_eth0}!\n",  # Print the eth0 IP fact
+# <ENVIRONMENTS DIRECTORY>/<ENVIRONMENT>/manifests/site.pp
+file {'/tmp/it_works.txt':    
+  ensure  => present,          
+  mode    => '0644',            
+  content => "It works on ${ipaddress_eth0}!\n", 
 }
 
+node 'bastion' {
+  include ntp
+}

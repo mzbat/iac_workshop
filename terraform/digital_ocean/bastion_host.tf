@@ -1,14 +1,14 @@
 # This is so we can test puppet agent.
-resource "digitalocean_droplet" "puppet-agent" {
+resource "digitalocean_droplet" "bastion-host" {
   ssh_keys           = [13805615]
-  image              = "debian-9-x64"
-  name               = "puppet-agent"
+  image              = "ubuntu-16-04-x64"
+  #image              = "debian-9-x64"
+  name               = "bastion"
   region             = "ams3"
-  size               = "512mb"
+  size               = "1gb"
   private_networking = true
   backups            = false
   ipv6               = false
-  #ssh_keys = [ "${var.ssh_fingerprint}" ]
 
   connection {
     user = "root"
@@ -22,12 +22,12 @@ resource "digitalocean_droplet" "puppet-agent" {
   provisioner "remote-exec" {
     inline = [
       "export PATH=$PATH:/usr/bin",
-      "apt-get update && apt-get upgrade -y",
-      "apt install puppet -y",
+      "cd /tmp && curl -O https://apt.puppetlabs.com/puppet5-release-xenial.deb",
+      "dpkg -i /tmp/puppet5-release-xenial.deb",
+      "apt-get update",
+      "apt-get install puppet-agent -y",
       "echo \"${digitalocean_droplet.puppet-master.ipv4_address} puppet puppet.bitsmasher.net\" >> /etc/hosts",
-      #"sed -i \'1 i\server=puppet.bitsmasher.net\' /etc/puppet/puppet.conf",
-      #"puppet agent -t",
+      #"echo \"${digitalocean_droplet.bastion-host.ipv4_address} bastion bastion.bitsmasher.net\" >> /etc/hosts",
     ]
   }
 }
-
