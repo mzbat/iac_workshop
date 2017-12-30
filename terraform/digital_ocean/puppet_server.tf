@@ -23,6 +23,11 @@ resource "digitalocean_droplet" "puppet-master" {
   }
 
   provisioner "file" {
+    source      = "conf/sync_git_master.sh"
+    destination = "/root/sync_git_master.sh"
+  }
+
+  provisioner "file" {
     source      = "conf/config_puppet_master.sh"
     destination = "/root/config_puppet_master.sh"
   }
@@ -32,10 +37,10 @@ resource "digitalocean_droplet" "puppet-master" {
       "export PATH=$PATH:/usr/bin",
       #"echo \"${digitalocean_droplet.puppet-master.ipv4_address} puppet puppet.bitsmasher.net\" >> /etc/hosts",
       #"echo \"${digitalocean_droplet.bastion-host..ipv4_address} bastion bastion.bitsmasher.net\" >> /etc/hosts",
-      "cd /tmp && curl -O https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb",
-      "dpkg -i /tmp/puppetlabs-release-pc1-xenial.deb",
+      "cd /tmp && curl -O https://apt.puppetlabs.com/puppet5-release-xenial.deb",
+      "dpkg -i /tmp/puppet5-release-xenial.deb",
       "apt-get update",
-      "apt-get install -y puppetserver",
+      "apt-get install -y puppetserver  puppet-agent",
       "bash /root/config_puppet_master.sh",
     ]
   }

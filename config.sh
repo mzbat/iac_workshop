@@ -132,7 +132,7 @@ function check_terraform {
 #############################
 function check_aws {
   echo -e "${LPURP}***** Confirm AWS Configuration *****"
-  if [ ! -f ~/.aws/credentials ] ; then
+  if [ -f ~/.aws/credentials ] ; then
     echo -e "${YELLOW}"
     echo "No ~/.aws/credentials found!"
     echo "Follow the steps at: http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html"
@@ -147,9 +147,9 @@ function check_aws {
   fi
 } 
 
-#
-#
-#
+####################
+# Check for tfvars #
+####################
 function check_terra_config {
   echo -e "${LPURP}***** Check  for terraform.tfvars file *****${NC}"
   if [ ! -f ${PWD}/terraform/aws/terraform.tfvars ] ; then
@@ -164,6 +164,10 @@ function check_terra_config {
     echo "aws_secret_key = \"ljasdfjlkjasdflkjasdflkajd98345\""
     echo -e "${NC}"
     ERROR_COUNTER=$((ERROR_COUNTER+1))
+  else 
+    echo -e "${CYAN}"
+    echo "Found tfvars file in ${PWD}/terraform/aws/terraform.tfvars"
+    echo -e "${NC}"
   fi
 }
 
@@ -173,9 +177,9 @@ function check_terra_config {
 function check_do_vars {
   echo -e "${LPURP}***** Check TF_VARS for Digital Ocean *****${NC}"
   TF=`cat ~/.bashrc | grep TF_VAR | cut -d'=' -f1`
-  if [ ! -z "$TF" ] ; then
+  if [ -z "$TF" ] ; then
     echo -e "${CYAN}"
-    echo "${TF}"
+    echo "Found properly formatted DigitalOcean credentials"
     echo -e "${NC}"
   else
     echo -e "${YELLOW}"

@@ -10,6 +10,3 @@
   :datadir: "/etc/puppetlabs/code/environments/%{::environment}/hieradata"
 :json:
   :datadir: "/etc/puppetlabs/code/environments/%{::environment}/hieradata"
-# When specifying a datadir, make sure the directory exists.
-  :datadir:
-~             

@@ -8,6 +8,14 @@ resource "digitalocean_domain" "default" {
 }
 
 # Add a record to the domain
+resource "digitalocean_record" "www" {
+  domain = "${digitalocean_domain.default.name}"
+  type   = "A"
+  name   = "www"
+  value  = "178.62.60.55"
+}
+
+# Add a record to the domain
 resource "digitalocean_record" "puppet" {
   domain = "${digitalocean_domain.default.name}"
   type   = "A"

@@ -26,3 +26,5 @@ gem install puppet-lint
 apt-get install -y ruby-msgpack
 sed -i '/main/a      preferred_serialization_format =  msgpack' /etc/puppet/puppet.conf
 
+
+/opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true

@@ -5,6 +5,6 @@ file {'/tmp/it_works.txt':
   content => "It works on ${ipaddress_eth0}!\n", 
 }
 
-node 'bastion-host' {
+node 'bastion' {
   include ntp
 }
