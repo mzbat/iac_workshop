@@ -25,8 +25,8 @@ echo '*' > /etc/puppetlabs/puppet/autosign.conf
 sed -i '/master/a   always_cache_features = true' /etc/puppetlabs/puppet/puppet.conf
 
 # this is to stop the msgpack errors
-apt-get install ruby-msgpack
-#sed -i '/main/a      preferred_serialization_format =  msgpack' /etc/puppet/puppet.conf
+apt-get install -y ruby-msgpack
+sed -i '/main/a      preferred_serialization_format =  msgpack' /etc/puppetlabs/puppet/puppet.conf
 
 # fix up the githubs
 #git config --global color.ui true

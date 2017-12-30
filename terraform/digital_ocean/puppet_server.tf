@@ -30,6 +30,8 @@ resource "digitalocean_droplet" "puppet-master" {
   provisioner "remote-exec" {
     inline = [
       "export PATH=$PATH:/usr/bin",
+      #"echo \"${digitalocean_droplet.puppet-master.ipv4_address} puppet puppet.bitsmasher.net\" >> /etc/hosts",
+      #"echo \"${digitalocean_droplet.bastion-host..ipv4_address} bastion bastion.bitsmasher.net\" >> /etc/hosts",
       "cd /tmp && curl -O https://apt.puppetlabs.com/puppetlabs-release-pc1-xenial.deb",
       "dpkg -i /tmp/puppetlabs-release-pc1-xenial.deb",
       "apt-get update",
