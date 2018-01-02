@@ -63,8 +63,9 @@ function fix_ruby {
   exec $SHELL
   rbenv install -v 2.3.0
   rbenv global 2.3.0
-  gem install puppet-lint
-  gem install msgpack
+  # let puppet install the gems yo
+  #gem install puppet-lint
+  #gem install msgpack
   sed -i '/main/a      preferred_serialization_format =  msgpack' ${CFG}
 
 } # //fix_ruby

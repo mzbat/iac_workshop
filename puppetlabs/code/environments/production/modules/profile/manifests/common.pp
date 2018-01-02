@@ -1,9 +1,10 @@
+# <ENVIRONMENTS DIRECTORY>/<ENVIRONMENT>/modules/profile/manifests/common.pp
 class profile::common {
 
-  package { 'puppet-lint':
-    ensure   => 'installed',
-    provider => 'gem',
-  }
+  #package { 'puppet-lint':
+  #  ensure   => 'installed',
+  #  provider => 'gem',
+  #}
 
   package { 'awscli':
     ensure   => installed,
