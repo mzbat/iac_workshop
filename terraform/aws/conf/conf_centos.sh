@@ -50,6 +50,19 @@ function fix_ruby {
 
   CFG="/etc/puppetlabs/puppet/puppet.conf"
   echo "gem: --no-document" > ~/.gemrc
+  yum install -y git-core zlib zlib-devel gcc-c++ patch readline
+  yum install -y readline-devel libyaml-devel openssl-devel make bzip2
+  yum install -y autoconf automake libtool bison curl sqlite-devel
+  cd
+  git clone git://github.com/sstephenson/rbenv.git .rbenv
+  echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+  echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+  exec $SHELL
+  git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+  echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bash_profile
+  exec $SHELL
+  rbenv install -v 2.3.0
+  rbenv global 2.3.0
   gem install puppet-lint
   gem install msgpack
   sed -i '/main/a      preferred_serialization_format =  msgpack' ${CFG}
@@ -67,11 +80,19 @@ function main {
 
   config_storage
   fix_etc_hosts
+  yum -y install epel-release
+  #fix_ruby
   fix_puppet_config
+
+  # fix up selinux
+  sed -i 's,^\(SELINUX=\).*,\1'permissive',' /etc/selinux/config
+  setenforce 0
 
   # This command might not work the first (or even second) time. 
   # Might need to do manually
   /opt/puppetlabs/bin/puppet agent -t --verbose --debug 
+
+  /opt/puppetlabs/puppet/bin/gem install msgpack 
 
   # double check dat ufw (obsoleted by security.tf)
   #ufw allow 8140

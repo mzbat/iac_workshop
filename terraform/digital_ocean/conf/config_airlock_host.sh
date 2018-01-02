@@ -51,6 +51,8 @@ function main {
   fix_msgpack
   install_terraform
   /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
+  apt-get install "build-essential"
+  /opt/puppetlabs/puppet/bin/gem install msgpack
 }
 
 if [ -z "$ARGS" ] ; then
