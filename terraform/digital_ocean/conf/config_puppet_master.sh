@@ -46,29 +46,41 @@ sed -i '/trapperkeeper/s/^#//g' /etc/puppetlabs/puppetserver/services.d/ca.cfg
 #git config --global user.name "YOUR NAME"
 #git config --global user.email "YOUR@EMAIL.com"
 
-# Set up ruby
-echo "gem: --no-document" > ~/.gemrc
-# need to install ruby first
-# apt-get install ruby-full -y
-#gem install puppet-lint
+function config_ruby {
+  echo "gem: --no-document" > ~/.gemrc
+  # need to install ruby first
+  apt-get install ruby-full -y
+  #gem install puppet
+  #gem install puppet-lint
+  #gem install rspec-puppet
+  # cd into your module and do:
+  # rspec-puppet-init
+}
  
-# set the time
-apt install ntpdate
-#ntpdate pool.ntp.org
-apt-get -y install ntp
-service ntp restart
-#timedatectl list-timezones
-timedatectl set-timezone America/Indiana/Indianapolis
+function config_ntp {
+  # set the time
+  apt install ntpdate
+  #ntpdate pool.ntp.org
+  apt-get -y install ntp
+  service ntp restart
+  #timedatectl list-timezones
+  timedatectl set-timezone America/Indiana/Indianapolis
+}
 
-# copy in the latest from the repo
-cd /tmp && \ 
-# change this to mzbat repo after building class
-git clone https://github.com/theDevilsVoice/iac_workshop.git
-cp -Rp /tmp/iac_workshop/puppetlabs /etc
+function main {
+  config_ruby
+  config_ntp
 
-# fire it up
-echo "Starting puppetserver... please be patient"
-systemctl start puppetserver
-systemctl enable puppetserver
-#systemctl is-active puppetserver
-#/opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
+  # fire it up
+  echo "Starting puppetserver... please be patient"
+  systemctl start puppetserver
+  systemctl enable puppetserver
+  #systemctl is-active puppetserver
+  #/opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
+}
+
+if [ -z "$ARGS" ] ; then
+  main $@
+else
+  main $ARGS
+fi

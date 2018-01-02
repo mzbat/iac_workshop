@@ -1,0 +1,30 @@
+{
+  "name": "iac-lamp",
+  "version": "0.1",
+  "author": "@theDevilsVoice",
+  "summary": "Installs, configures, and manages the our LAMP setup.",
+  "license": "Apache-2.0",
+  "source": "https://github.com/mzbat/iac_workshop/tree/master/puppetlabs/code/environments/production/modules/lamp",
+  "project_page": "https://github.com/mzbat/iac_workshop",
+  "issues_url": "https://github.com/mzbat/iac_workshop/issues",
+  "dependencies": [
+    { "name":"puppetlabs/stdlib","version_requirement":">= 4.13.1 < 5.3.3" }
+  ],
+  "data_provider": "hiera",
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 4.5.0 < 5.3.3"
+    }
+  ],
+  "description": "LAMP Module for CentOS."
+}

@@ -6,6 +6,6 @@ output "master" {
   value = "Log in to the master:\n    ssh -i ~/.ssh/do_terra_rsa -l root -A  ${digitalocean_droplet.puppet-master.ipv4_address}\n"
 }
 
-output "bastion" {
-  value = "Log in to the bastion:\n    ssh -i ~/.ssh/do_terra_rsa -l root -A ${digitalocean_droplet.bastion-host.ipv4_address}\n"
+output "airlock" {
+  value = "Log in to the airlock:\n    ssh -i ~/.ssh/do_terra_rsa -l root -A ${digitalocean_droplet.airlock-host.ipv4_address}\n"
 }

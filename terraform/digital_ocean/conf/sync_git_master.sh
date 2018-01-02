@@ -18,6 +18,7 @@ function usage {
   echo "Usage: $0 [options], where options are:"
   echo "  -h              print help and exit"
   echo "  -a              sync all environments"
+  echo "  -b              pull a specific branch, sync all environments"
   echo "  -d              sync dev environment" 
   echo "  -p              sync prod environment"
   echo "  -w              sync workshop environment"
@@ -41,12 +42,13 @@ function remove_stale {
 
 } # //remove_stale
 
-function pull_from_git {
+function pull_from_git () {
 
+  BRANCH=$1
   # copy in the latest from the repo
   cd /tmp && \
   # change this to mzbat repo after building class
-  git clone https://github.com/theDevilsVoice/iac_workshop.git --branch bastion
+  git clone https://github.com/theDevilsVoice/iac_workshop.git --branch ${BRANCH}
   return 0
 
 } # //pull_from_git
@@ -95,34 +97,51 @@ function sync_workshop {
 
 function main {
 
+  BRANCH="master"
+
   # push the old one out of the way. 
   remove_stale 
 
-  while getopts "hadpw" OPTION; do
+  while getopts "hab:dpw" OPTION; do
     case $OPTION in 
       h)
         usage
         exit 0
         ;;
-      a)
-        pull_from_git
+      a|b)
+        # They specified a branch, make sure it's there
+        if [ ${OPTION} == "b" ]
+        then
+          if [ ! -z "$(git ls-remote --heads https://github.com/theDevilsVoice/iac_workshop.git ${BRANCH})" ]
+          then 
+            echo " "
+            echo "No such branch \"${BRANCH}\" in the repo, sorry friend. "
+            usage
+            exit 1
+          else 
+            BRANCH=$OPTARG
+          fi
+        fi   
+        # get the latest
+        pull_from_git ${BRANCH}
+        # copy the dirs into place
         sync_dev
         sync_prod
         sync_workshop
         exit 0
         ;;
       d)
-        pull_from_git
+        pull_from_git ${BRANCH}
         sync_dev
         exit 0
         ;;
       p)
-        pull_from_git
+        pull_from_git ${BRANCH}
         sync_prod
         exit 0
         ;;
       w) 
-        pull_from_git
+        pull_from_git ${BRANCH}
         sync_workshop
         exit 0
         ;;

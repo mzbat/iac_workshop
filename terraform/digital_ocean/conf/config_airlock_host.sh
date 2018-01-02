@@ -3,9 +3,10 @@
 # Author: @theDevilsVoice 
 # Date: 12/28/2017
 #
-# Script Name: config_bastion_host.sh
+# Script Name: config_airlock_host.sh
 #
-# Description: Set up and start puppet master
+# Description: Set up a host with all the tools for participants. 
+#              Make it an ingress/egress for our lab environment. 
 #
 # Run Information: 
 #
@@ -29,10 +30,13 @@ function setup_ruby {
 
 # this is to stop the msgpack errors
 function fix_msgpack {
-  apt-get install -y ruby-msgpack
-  sed -i '/main/a      preferred_serialization_format =  msgpack' /etc/puppet/puppet.conf
+  #apt-get install -y ruby-msgpack
+  gem install msgpack
+  sed -i '/main/a      preferred_serialization_format =  msgpack' /etc/puppetlabs/puppet/puppet.conf
 }
 
+# We need terraform on this host so we can provision other hosts
+# from it. 
 function install_terraform {
   
   wget -P /tmp https://releases.hashicorp.com/terraform/0.11.1/terraform_0.11.1_linux_amd64.zip
