@@ -3,9 +3,11 @@
 # Author: @theDevilsVoice 
 # Date: 12/28/2017
 #
-# Script Name: config_bastion_host.sh
+# Script Name: build.sh
 #
-# Description: Set up and start puppet master
+# Description: A wrapper script for terraform apply so we 
+#              don't damage existing resources with our 
+#              fumbling about.
 #
 # Run Information: 
 #
@@ -59,6 +61,7 @@ function terraform_it {
 
 } # //terraform_it
 
+# Selectively destroy most of the things
 function destroy_all {
   return 0
 } # //destroy_all
@@ -76,9 +79,11 @@ function main {
         ;;
       t)
         terraform_it
+        exit 0
         ;;
       x)
         destroy_all
+        exit 0
         ;;
       *)
         usage

@@ -1,1 +1,4 @@
 mysql::server::root_password: examplepassword
+
+classes:
+  - 'role::%{::role}'

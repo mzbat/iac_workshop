@@ -22,8 +22,9 @@ resource "aws_instance" "franklin-iac" {
   provisioner "remote-exec" {
     inline = [
       "export PATH=$PATH:/usr/bin",
-      #"sudo yum update -y",
-      "sudo hostnamectl set-hostname iac-web --static",
+      "sudo rpm -Uvh https://yum.puppetlabs.com/puppet5/puppet5-release-el-7.noarch.rpm",
+      "sudo yum install -y puppet-agent", 
+      #"sudo hostnamectl set-hostname iac-web --static",
       "sudo bash /home/centos/conf.sh",
     ]
   }
