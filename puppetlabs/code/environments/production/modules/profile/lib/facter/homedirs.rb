@@ -1,3 +1,4 @@
+# <ENVIRONMENTS DIRECTORY>/<ENVIRONMENT>/modules/profile/lib/facter/homedirs.rb
 # collect home directories
 Facter.add(:homedirs) do
   confine :kernel => 'Linux'

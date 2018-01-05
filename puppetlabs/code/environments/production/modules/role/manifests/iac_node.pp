@@ -2,4 +2,8 @@
 class role::iac_node {
   include profile::common
   include profile::users
+  include profile::cron
+  include profile::ntp
+  include profile::python
+  include profile::elixir
 }

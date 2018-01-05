@@ -15,7 +15,7 @@
 # Configure the storage we created
 function config_storage {
 
-  mount="/mnt/data1"
+  mount="/data1"
   if ! grep -qs "$mount" /proc/mounts
   then
     mkfs -t ext4 /dev/xvdf

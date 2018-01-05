@@ -10,6 +10,7 @@ class profile::common {
     ensure   => installed,
   }
 
+  # https://keybase.io/docs/the_app/install_linux
                
   package { 'git':
     ensure   => installed,

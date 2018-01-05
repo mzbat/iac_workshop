@@ -1,3 +1,4 @@
+# <ENVIRONMENTS DIRECTORY>/<ENVIRONMENT>/modules/profile/lib/facter/role.rb
 Facter.add(:role) do
   # Retrieve hostname and assign role base on it        
   setcode do

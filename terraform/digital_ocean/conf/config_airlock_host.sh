@@ -53,6 +53,7 @@ function main {
   /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
   apt-get install "build-essential"
   /opt/puppetlabs/puppet/bin/gem install msgpack
+  apt-get -y install cloud-init
 }
 
 if [ -z "$ARGS" ] ; then
