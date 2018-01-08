@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Author: @theDevilsVoice 
+# Author: @theDevilsVoice
 # Date: 10/13/2017
 #
 # Script Name: config.sh
@@ -8,7 +8,7 @@
 # Description: Use this shell script to ensure your system
 #              is ready for the class.
 #
-# Run Information: 
+# Run Information:
 #
 # Error Log: Any output found in /path/to/logfile
 #
@@ -133,19 +133,19 @@ function check_terraform {
 function check_aws {
   echo -e "${LPURP}***** Confirm AWS Configuration *****"
   if [ -f ~/.aws/credentials ] ; then
+    echo -e "${CYAN}"
+    aws --version
+    echo "AWS Configuration looking good..."
+    echo -e "${NC}"
+  else
     echo -e "${YELLOW}"
     echo "No ~/.aws/credentials found!"
     echo "Follow the steps at: http://docs.aws.amazon.com/cli/latest/userguide/cli-config-files.html"
     echo ""
     echo -e "${NC}"
     ERROR_COUNTER=$((ERROR_COUNTER+1))
-  else 
-    echo -e "${CYAN}"
-    aws --version
-    echo "AWS Configuration looking good..."
-    echo -e "${NC}"
   fi
-} 
+}
 
 ####################
 # Check for tfvars #
@@ -164,7 +164,7 @@ function check_terra_config {
     echo "aws_secret_key = \"ljasdfjlkjasdflkjasdflkajd98345\""
     echo -e "${NC}"
     ERROR_COUNTER=$((ERROR_COUNTER+1))
-  else 
+  else
     echo -e "${CYAN}"
     echo "Found tfvars file in ${PWD}/terraform/aws/terraform.tfvars"
     echo -e "${NC}"
@@ -187,7 +187,7 @@ function check_do_vars {
     echo "Digital Ocean provisioning won't work right."
     echo ""
     echo "Be sure these are added to the end of .bashrc:"
-    echo "" 
+    echo ""
     echo "export TF_VAR_do_token="
     echo "export TF_VAR_pub_key="
     echo "export TF_VAR_pvt_key="
@@ -211,7 +211,7 @@ function check_puppet_lint {
     # This isn't really a showstopper so not counting as an error
     #ERROR_COUNTER=$((ERROR_COUNTER+1))
   fi
-} 
+}
 
 #########################
 # Print the ERROR_COUNT #
@@ -242,7 +242,7 @@ function config_deb {
   PYVER=`python --version`
   if [ -z "$PYVER" ] ; then
     echo "$PYVER"
-  else 
+  else
     echo "need to install python?"
   fi
   if [ -e "/usr/bin/pip" ] ; then
@@ -270,7 +270,7 @@ function config_redhat {
   echo -e "${LPURP}***** Do the RedHat setup *****${NC}"
   sudo yum update -y
   sudo yum groupinstall 'Development Tools'
-} 
+}
 
 ########################
 # Do stuff for FreeBSD #
@@ -289,7 +289,7 @@ function config_obsd {
   ln -sf /usr/local/bin/python2.7-config /usr/local/bin/python-config
   #ln -sf /usr/local/bin/pydoc2.7  /usr/local/bin/pydoc
   pkg_add py-pip py-boto
-  pkg_add -i -v bash 
+  pkg_add -i -v bash
   pip install awscli aws-shell terraform
   #/usr/bin/doas -u root pkg_add -v bash
 }
@@ -299,7 +299,7 @@ function config_obsd {
 ######################
 function config_apple {
   echo -e "${LPURP}***** Do the Setup for Mac *****${NC}"
-  if [ -e "/usr/local/bin/brew" ] ; then 
+  if [ -e "/usr/local/bin/brew" ] ; then
     brew update
     brew upgrade
     brew install terraform
@@ -313,14 +313,14 @@ function config_apple {
     echo -e "${YELLOW}"
     echo "Install brew from here: https://brew.sh/ and run this script again."
     echo -e "${NC}"
-    ERROR_COUNTER=$((ERROR_COUNTER+1)) 
+    ERROR_COUNTER=$((ERROR_COUNTER+1))
   fi
 }
 
 function main {
 
   if [[ $EUID -ne 0 ]]; then
-    echo "This script must be run as root" 
+    echo "This script must be run as root"
     exit 1
   fi
 
@@ -332,14 +332,14 @@ function main {
     config_redhat
   elif [ "$(grep -Ei 'debian|buntu|mint' /etc/*release)" ]; then
     config_deb
-  else 
+  else
     echo "Unable to auto-configure this architecture"
     #exit 1
   fi
 
-  check_terraform 
+  check_terraform
   check_aws
-  check_terra_config 
+  check_terra_config
   check_do_vars
   show_summary
 
