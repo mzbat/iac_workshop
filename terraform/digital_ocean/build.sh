@@ -52,6 +52,7 @@ function terraform_it {
 
   # We import this so we don't destroy the existing DNS setup.
   terraform import digitalocean_domain.default bitsmasher.net
+  terraform import digitalocean_record.www www
 
   # now let's do some planning
   terraform plan -out plan

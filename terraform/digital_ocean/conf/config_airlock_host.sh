@@ -26,6 +26,7 @@ function setup_ruby {
   echo "gem: --no-document" > ~/.gemrc
   apt-get install ruby-full -y
   gem install puppet-lint
+  gem install puppet-bolt
 }
 
 # this is to stop the msgpack errors

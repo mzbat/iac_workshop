@@ -30,8 +30,10 @@ if [ ! -f terraform.tfvars ] ; then
   exit 0
 fi
 
-terraform apply
-sudo /home/centos/conf_centos.sh
+terraform plan -out plan
+terraform apply "plan"
+
+#sudo /home/centos/conf_centos.sh
 #"sudo aws --no-sign-request s3 sync --exclude \".git/*\" s3://repo/puppet/ /etc/puppetlabs/"
 #"sudo /opt/puppetlabs/bin/puppet apply /etc/puppetlabs/code/environments/production/manifests/site.pp"
 

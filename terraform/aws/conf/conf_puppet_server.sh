@@ -3,9 +3,9 @@
 # Author: @theDevilsVoice
 # Date: 09/08/2017
 #
-# Script Name: conf_centos.sh
+# Script Name: conf_puppet_server.sh
 #
-# Description: Use this shell script to ensure your system
+# Description: Use this to configure puppet server
 #
 # Run Information:
 #
@@ -85,7 +85,9 @@ function main {
   then 
     config_storage
   fi
-  fix_etc_hosts
+
+  # Next line is important for puppet agents, not so much on the server
+  #fix_etc_hosts
   yum -y install epel-release
   #fix_ruby
   fix_puppet_config
