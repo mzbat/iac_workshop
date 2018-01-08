@@ -66,6 +66,24 @@ class profile::users {
     key        => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDFYLHT6U8bzkM/OSYeHccQ8MvQDBAnq28wYHCLYmOUKxKO0CxPHW9h5A50ry/ETyAHRNVDs4RsHjmFzTjOnT1nzPZQxU0hhGEGhVCx8VcBWolci0AL3MI3+qsleb1iNwEFzDmQ1qImkHmG7YKB9LDTSZ7a5eVZV5Quvqya0TSIiahGhiGCU++Xs/kC8F4eK45EypvNF5z827oMWkzrUtDtLVCFZPl5cgbW7OP1fxhN+61ue2XZAqQOyy2rfr/5V8GABcNP//be4AO+++NBvvXKlaAhn6vJ9HSuQT0aWA4PWBo5Vv7PSxUBWfRbTfOw1QspR+wPOM1Oq4bAjnIygqgd',
   }
 
+  user {'lnxdork':
+    ensure     => 'present',
+    home       => '/home/lnxdork',
+    comment    => 'lnxdork',
+    groups     => notice( $groups ),
+    gid        => '666',
+    shell      => '/bin/bash',
+    uid        => '2600',
+    managehome => true,
+  }
+
+  ssh_authorized_key { 'lnxdork@sager.rubber.horse':
+    user       => 'lnxdork':
+    type       => 'ssh-rsa',
+    key        => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQC4pIXmMB2oLJYbj3khLeTMFmKnB56u8xUydZUqjuyjuQMrWDhsrV0mTlz9RKLFD0TJXGsh2BlFgcLP3+sRkL34Slyknpy2R+xxr5q7P8wggmi9XK2wFpJptRiYCVdaTLdrYNPuD4U5inrMGiYPop4mO4uUCTbsUB8Re8eBe8Agx6keUTQbl8a2Azyfd9qzQBk8BrtskvJBMQDWccDrcKdqH/0AKTUrQpdi+eGBvOwbsljtXGRDYsjwgKkHA4PKx8MpGBNZHg+Xlf8El5GKP0GYiRBGu35Ag7PqQcfQtPULYlQjqA3/VScLfQgt5a6AeUQs5w3H1g2a3wqwkEKWBDcz',
+  }
+
+  # This comes from ../lib/facter/homedirs.rb
   $facts['homedirs'].each |$homedir| {
     file { "/home/$homedir/.bashrc":
       ensure    => file,

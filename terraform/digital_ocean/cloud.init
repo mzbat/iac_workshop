@@ -1,0 +1,18 @@
+provider "cloudinit" {}
+
+
+data "template_file" "shell-script" {
+  template = "${file("conf/disk.sh")}"
+
+}
+data "template_cloudinit_config" "cloudinit-franklin" {
+
+  gzip = false
+  base64_encode = false
+
+  part {
+    content_type = "text/x-shellscript"
+    content      = "${data.template_file.shell-script.rendered}"
+  }
+
+}

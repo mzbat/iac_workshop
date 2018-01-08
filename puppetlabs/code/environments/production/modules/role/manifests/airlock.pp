@@ -1,5 +1,7 @@
 # <ENVIRONMENTS DIRECTORY>/<ENVIRONMENT>/modules/profile/role/manifests/airlock.pp
 class role::airlock {
   include profile::common
-  include profile::debian_users
+  include profile::users
+  include profile::cron
+  include profile::ntp
 }

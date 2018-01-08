@@ -9,6 +9,7 @@ resource "digitalocean_droplet" "airlock-host" {
   private_networking = true
   backups            = false
   ipv6               = false
+  volume_ids = ["${digitalocean_volume.class.id}"]
 
   connection {
     user = "root"
