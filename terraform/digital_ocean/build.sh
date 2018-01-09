@@ -80,6 +80,10 @@ function main {
         ;;
       t)
         terraform_it
+        if [ -f plan ] 
+        then 
+          rm plan
+        fi
         exit 0
         ;;
       x)

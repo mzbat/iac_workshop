@@ -25,14 +25,15 @@ function setup_puppet {
 function setup_ruby {
   echo "gem: --no-document" > ~/.gemrc
   apt-get install ruby-full -y
-  gem install puppet-lint
-  gem install puppet-bolt
+  /opt/puppetlabs/puppet/bin/gem install puppet-lint
+  # unable to find this gem? 
+  /opt/puppetlabs/puppet/bin/gem install puppet-bolt
 }
 
 # this is to stop the msgpack errors
 function fix_msgpack {
   #apt-get install -y ruby-msgpack
-  gem install msgpack
+  /opt/puppetlabs/puppet/bin/gem install msgpack
   sed -i '/main/a      preferred_serialization_format =  msgpack' /etc/puppetlabs/puppet/puppet.conf
 }
 
@@ -46,15 +47,25 @@ function install_terraform {
  
 }
 
+function mount_data {
+
+  apt-get -y  install udisks2
+  mkfs -t ext4 /dev/sda
+  udisksctl mount -b /dev/sda
+  # add symlink to this thing? 
+
+} # //mount_data
+
 function main { 
   setup_puppet
   setup_ruby
+  # fix works on agent but not server? 
   fix_msgpack
   install_terraform
   /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
-  apt-get install "build-essential"
-  /opt/puppetlabs/puppet/bin/gem install msgpack
-  apt-get -y install cloud-init
+  apt-get -y install "build-essential"
+  #apt-get -y install cloud-init
+  mount_data
 }
 
 if [ -z "$ARGS" ] ; then

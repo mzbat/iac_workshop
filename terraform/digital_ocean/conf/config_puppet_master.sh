@@ -62,9 +62,8 @@ function config_ruby {
   echo "gem: --no-document" > ~/.gemrc
   # need to install ruby first
   #apt-get install ruby-full -y
-  #gem install puppet
-  #gem install puppet-lint
-  #gem install rspec-puppet
+  /opt/puppetlabs/puppet/bin/gem install puppet-lint
+  /opt/puppetlabs/puppet/bin/gem install rspec-puppet
   # cd into your module and do:
   # rspec-puppet-init
   return 0
@@ -90,11 +89,12 @@ function main {
   config_ntp
 
   # fire it up
-  echo "Starting puppetserver... please be patient"
+  echo "Starting puppetserver... please be patient."
+  echo "This will take about 3 minutes. "
   systemctl start puppetserver
   systemctl enable puppetserver
   #systemctl is-active puppetserver
-  apt-get install "build-essential"
+  apt-get -y install "build-essential"
   /opt/puppetlabs/puppet/bin/gem install msgpack
   #/opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
 }
