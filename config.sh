@@ -315,25 +315,40 @@ function config_apple {
     echo -e "${NC}"
     ERROR_COUNTER=$((ERROR_COUNTER+1)) 
   fi
+
+  return 0
+}
+
+##################################################
+# https://github.com/mzbat/iac_workshop/issues/9 #
+##################################################
+function check_if_root {
+
+  if [[ $EUID -ne 0 ]]; then
+    echo "This script must be run as root"
+    exit 1
+  else 
+    echo "Running as root" 
+  fi
+
+  return 0
 }
 
 function main {
-
-  if [[ $EUID -ne 0 ]]; then
-    echo "This script must be run as root" 
-    exit 1
-  fi
 
   if [ "$(uname)" == "Darwin" ]; then
     config_apple
   elif [ "$(uname)" == "OpenBSD" ]; then
     config_obsd
   elif [ "$(grep -Ei 'fedora|redhat' /etc/*release)" ]; then
+    check_if_root
     config_redhat
   elif [ "$(grep -Ei 'debian|buntu|mint' /etc/*release)" ]; then
+    check_if_root
     config_deb
   else 
     echo "Unable to auto-configure this architecture"
+    echo "Please make sure you have all the right packages installed"
     #exit 1
   fi
 

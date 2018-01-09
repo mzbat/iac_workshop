@@ -37,7 +37,7 @@ resource "digitalocean_droplet" "puppet-master" {
       "export PATH=$PATH:/usr/bin",
       "cd /tmp && curl -O https://apt.puppetlabs.com/puppet5-release-xenial.deb",
       "dpkg -i /tmp/puppet5-release-xenial.deb",
-      "apt-get update",
+      "apt-get update && apt-get -y upgrade",
       "apt-get install -y puppetserver  puppet-agent",
       "bash /root/config_puppet_master.sh",
     ]

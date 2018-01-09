@@ -5,6 +5,6 @@ class role::iac_node {
   include profile::modules
   include profile::cron
   include profile::ntp
-  include profile::python
-  include profile::elixir
+  #include profile::python
+  #include profile::elixir
 }
