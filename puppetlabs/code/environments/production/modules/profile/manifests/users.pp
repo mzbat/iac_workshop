@@ -297,14 +297,14 @@ class profile::users {
   $facts['homedirs'].each |$homedir| {
     file { "/home/${homedir}/.bashrc":
       ensure  => file,
-      source  => 'puppet://modules/profile/bashrc',
+      source  => "puppet://modules/profile/bashrc",
       mode    => '0644',
       replace => true,
       owner   => $homedir,
     }
     file { "/home/${homedir}/.bash_profile":
       ensure  => file,
-      source  => 'puppet://modules/profile/bash_profile',
+      source  => "puppet://modules/profile/bash_profile",
       mode    => '0644',
       replace => true,
       owner   => $homedir,

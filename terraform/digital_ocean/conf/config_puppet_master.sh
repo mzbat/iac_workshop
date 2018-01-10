@@ -60,8 +60,7 @@ function fix_github {
 
 function config_ruby {
   echo "gem: --no-document" > ~/.gemrc
-  # need to install ruby first
-  #apt-get install ruby-full -y
+  apt-get install ruby-full -y
   /opt/puppetlabs/puppet/bin/gem install puppet-lint
   /opt/puppetlabs/puppet/bin/gem install rspec-puppet
   # cd into your module and do:
