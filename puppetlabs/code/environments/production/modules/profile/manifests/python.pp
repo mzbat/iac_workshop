@@ -42,8 +42,8 @@ class profile::developer {
   # If the data dir creation was successful, set up our projet space. 
   if $facts['data_mnt_present'] == 'yes' {
 
-    $project_dirs = [ '/data1/bin', '/data1/log',
-                      '/data1/environment', '/data1/src',
+    $project_dirs = [ '/data/bin', '/data/log',
+                      '/data/environment', '/data/src',
                     ]
   
     file { $project_dirs:
@@ -53,7 +53,7 @@ class profile::developer {
       mode   => '0755',
     }
 
-    file { '/data1/bin/python_virtual.sh':
+    file { '/data/bin/python_virtual.sh':
       ensure    => file,
       source    => 'puppet://modules/profile/python_virtual.sh',
       mode      => '0755',

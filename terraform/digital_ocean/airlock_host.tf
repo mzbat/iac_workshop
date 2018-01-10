@@ -30,6 +30,11 @@ resource "digitalocean_droplet" "airlock-host" {
     destination = "/root/config_airlock_host.sh"
   }
 
+  provisioner "file" {
+    source      = "conf/disk.sh"
+    destination = "/root/disk.sh"
+  }
+
   provisioner "remote-exec" {
     inline = [
       "export PATH=$PATH:/usr/bin",

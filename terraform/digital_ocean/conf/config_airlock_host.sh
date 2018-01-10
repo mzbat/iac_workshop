@@ -64,8 +64,10 @@ function main {
   install_terraform
   /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
   apt-get -y install "build-essential"
+  # could we config disks with cloud init? 
   #apt-get -y install cloud-init
-  mount_data
+  # get this one working so it auto-mounts
+  #mount_data
 }
 
 if [ -z "$ARGS" ] ; then
