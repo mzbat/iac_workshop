@@ -97,6 +97,7 @@ function main {
   apt-get -y install "build-essential"
   /opt/puppetlabs/puppet/bin/gem install msgpack
   #/opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
+  bash /root/sync_git_master.sh -p
 }
 
 if [ -z "$ARGS" ] ; then

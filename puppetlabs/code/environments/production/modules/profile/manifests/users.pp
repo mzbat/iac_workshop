@@ -68,7 +68,7 @@ class profile::users {
     key  => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDFYLHT6U8bzkM/OSYeHccQ8MvQDBAnq28wYHCLYmOUKxKO0CxPHW9h5A50ry/ETyAHRNVDs4RsHjmFzTjOnT1nzPZQxU0hhGEGhVCx8VcBWolci0AL3MI3+qsleb1iNwEFzDmQ1qImkHmG7YKB9LDTSZ7a5eVZV5Quvqya0TSIiahGhiGCU++Xs/kC8F4eK45EypvNF5z827oMWkzrUtDtLVCFZPl5cgbW7OP1fxhN+61ue2XZAqQOyy2rfr/5V8GABcNP//be4AO+++NBvvXKlaAhn6vJ9HSuQT0aWA4PWBo5Vv7PSxUBWfRbTfOw1QspR+wPOM1Oq4bAjnIygqgd',
   }
 
-  user {'lnxdork':
+  user { 'lnxdork':
     ensure     => 'present',
     home       => '/home/lnxdork',
     comment    => 'lnxdork',
@@ -85,9 +85,9 @@ class profile::users {
     key  => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQC4pIXmMB2oLJYbj3khLeTMFmKnB56u8xUydZUqjuyjuQMrWDhsrV0mTlz9RKLFD0TJXGsh2BlFgcLP3+sRkL34Slyknpy2R+xxr5q7P8wggmi9XK2wFpJptRiYCVdaTLdrYNPuD4U5inrMGiYPop4mO4uUCTbsUB8Re8eBe8Agx6keUTQbl8a2Azyfd9qzQBk8BrtskvJBMQDWccDrcKdqH/0AKTUrQpdi+eGBvOwbsljtXGRDYsjwgKkHA4PKx8MpGBNZHg+Xlf8El5GKP0GYiRBGu35Ag7PqQcfQtPULYlQjqA3/VScLfQgt5a6AeUQs5w3H1g2a3wqwkEKWBDcz',
   }
 
-  user {'sachin':
-    ensure  => 'present',
-    home    => '/home/sachin
+  user { 'sachin':
+    ensure     => 'present',
+    home       => '/home/sachin',
     comment    => 'sachin',
     groups     => notice( $groups ),
     gid        => '666',
@@ -119,7 +119,7 @@ class profile::users {
     key        => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDerEhtIFmkMSii4Cq7bjf2b2I9jtRXP0w3tN9I9k1wKhWpsY3XdojvkBiSilartY8BdL4x8XOEeSqHpmgX6p8OMsWwxbXQ51ZFm3VfPsZe3RsDvcUKBJcHxnk0fqXAcYHXyIEys5XkYPhwitYAru2L/Rwr2IkKQW8VXx1tQ9v47NxEUAy6+up9V8Z7oofuws4meWdjL+iQGnCDqhrqjdMPyTppI2wTxWO+QqpaY/UxLoJuvEA0mQf3AJAiCZDVcxqPUfoGH+lbnFwsSQJi/0KFLevBRwGI1DrYQVhOP36Esr2TI60l0h36lDe0HIPMbMafbwNJsuhNre5BL0IcXI9P',
   }
 
-  user { 'kjshomper',
+  user { 'kjshomper':
     ensure     => 'present',
     home       => '/home/kjshomper',
     comment    => 'kjshomper',
@@ -136,11 +136,46 @@ class profile::users {
     key        => 'AAAAB3NzaC1yc2EAAAADAQABAAACAQCtLnDZ5aR62LtoBl/CcUbFc8ZafNzox1gdbpQdlEGFLyghF8mj2RrmieQXT4uZSIo4V79ETp1VEsF6VIXmc2rnD4jeZ7o8UtCMD8Nxauu0dCy8xNcuce4+HmszECbdw26Hx8sjKpRJwTWcCWXfUidSDaegKgpQ+IGGKotv6W4KG7t2hesLeL8iPr6Pdzxbp5KZjcrWsg+WttXHU2+RTJzk+RUo1pcaIXiq1DbNHsMlskt4ZwFHNhVymQ/tmcadDEDtNPTvgGojUfStHyRLRRqgMPWfz5sCXHRn4q+rWOThM6SqA0x1WL/sfwd4nMFmkuZzys+2w/Igdcqa2NevdTtRaKyIX6EFXwnuTPnzwOBvYKzy3tLDQF2J97e1rX9yRd+tlnIp5XjartHexXxcEt90Vru07OkGBLVUTJY2BDKwomdvo/+sPuRyA+xlHAsV6vhRrGXT0biM2rgyypZfbxrol7PL2vEBvxc273aEuX7tpO3wea7JTbCz1mt9ZBbuc2OW5l+kwxKkrVR2BlXLL4LG4jl2yUd2hMH9MyTRCpfjms5Hexa1EbrJMqZ+0pzNjvuleZQLsel8xNMUu/eKdaAl+kGg6yXHUwbRzDDpTx/37mNnHibBBP3vbd+BItE4RAoHo3bBrrzTsk6hFRx8yT9TIQOB46kIstXEapkoYbavCQ==',
   }
  
+  user { 'dustin':
+    ensure     => 'present',
+    home       => '/home/dustin',
+    comment    => 'dustin',
+    groups     => notice( $groups ),
+    gid        => '666',
+    shell      => '/bin/bash',
+    uid        => '2604',
+    managehome => true,
+  }
+
+  ssh_authorized_key { 'dustinbixler@Dustins-MacBook-Pro.local':
+    user       => 'dustin',
+    type       => 'ssh-rsa',
+    key        => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDc4ap1CAZkvF8i9luHW8kakNwHN6HYECSWDtAmshc1BhaomUjeXu3jlq/05+0Azad4y5jG0SVs339XUz1TFDeWeeIooFikAvG3weSpRlC4beQS0gA+L2LNXRLoTXSD1qjwlc5fUBcTJIYhvIm/uSKG4qTuSNlCJEDVsqOpNkbtlqdrvGGw45+dcreDKqLP1IDfkRz7ROCB13mNZC+Feq0j8CVnOtDJUfxC4faDGX+1bmZOeiuz1X88VEAZk29iRv+dAbUoC07KliVErFFFDAAcmTrJXJ5hOnHiYBtNtqWKOZzqoINcIqOa4bEHKBUTWFpw+DNz7C1uB/fSuxUz4UVn',
+  } 
+
+  user { 'atendam':
+    ensure     => 'present',
+    home       => '/home/atendam',
+    comment    => 'atendam',
+    groups     => notice( $groups ),
+    gid        => '666',
+    shell      => '/bin/bash',
+    uid        => '2605',
+    managehome => true,
+  }
+
+  ssh_authorized_key { 'andrew.tendam@gmail.com':
+    user       => 'atendam',
+    type       => 'ssh-rsa',
+    key        => 'AAAAB3NzaC1yc2EAAAADAQABAAACAQC48PqsOVewfO1FofBxZiLq+7uFtBHDCrgUfogsZNepeBhI/LY66CCpafXBn0/Z1AWByGMStvJ/J126lBb+Jt42pja2z22VGNqPXxe7SB2v7VgMR8p1JskHJV6djMe9rY4H/74iWFyfKI07TYNqz9rOplVS/XKozBW+fL4q1xTeTJYCXgA6iSmMUyOGQVJSNoade2MUnX1enkP0rRAXdbhPUQbrV72AYEudeRY9R0jtbu4B4Wy4cxHm65LUKDoqiEPjFftCM085f+DD2qL3ef5ZklV0nKcvST3nb0MJ2MJbgv+VnludxjsqYUKeruDgu4cQVg8K3W5wribKOzVdPfV/jIkp0RwO+kePiFi1LJm7ZG+/xA5XYyVYzmUxeUDrZ7WRUEQBtpFHhNpoRw4e+tOUDqD4yIx8W3UXok3JEvuCCXNUEfkGHpLex6aR9pVvBpc78m0XYKKrr+es0vu98/7IqrJIFmRn5XEjtolfjGi3ReqYgDTplM0hlJcFEyAPuCHXE/Dd0TY6GTp2/q6OnlTv4JqjK7nQFWm7ZSQHkCdFh3xkNC3GlKmc24oo1qpLLMgA6l5dcjSh8+69d/grygn+tSvcEBVvQV1FToshqdNOELyJaAX7u7YDpPMf0d5ODcMzDirAPGZpmHwlkqG5U2ujLT1pAHOMPxrbC/Uh6ZyAJw==',
+  } 
+
+
   # This comes from ../lib/facter/homedirs.rb
   $facts['homedirs'].each |$homedir| {
     file { "/home/$homedir/.bashrc":
       ensure  => file,
-      source  => ''puppet':#modules/profile/bashrc',
+      source  => 'puppet://modules/profile/bashrc',
       mode    => '0644',
       replace => true,
       owner   => $::homedir,
