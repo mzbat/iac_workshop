@@ -293,18 +293,18 @@ class profile::users {
     key        => 'AAAAB3NzaC1yc2EAAAADAQABAAACAQDcB1fvWAQdhka3l1e3XSYZCIv9BLPMQbu+wwC+g/ssMh2K4VeVQk4exaXsYYJfGR0tfzc/fqZLAIfxhQlVP90xVE5skUZj0HYoKnKyJMa8QJ4wnuk5UqZe8RKmGmJOoDE7YqClxlQf9TQHFps232Qhcz9jvnIrZ4ESj2EponZeUENglcjNBDeYZXVhHB00SPICDOuTac9Z+5kfTcVlhhBCnai/uPopdOlxWh6KpLOqpG53oTnWq9Cj4PMVMfK6Dq/z0MizfKpKvvpeHGvorYuAXCp3ke+wqGtVCzBX8SB5bnLxSwrmeUIDRJmdjhmZuY47/CJw4UNjYY20+LwqOE+9f/4v26EQmG4DBaxfHvOVVYYeHCix9LKXUy/Poo6933aHYwGRtu54aNUlhc0sNq9k2HhwSlQgvvcTib9/U3o6K/cKHHKQyRDNGYtmkeOY6/mZWmlWLIypPwZzsIAz/F+fMkhis3CytMooIZaMh615ltlKyy5ooJSQ2TgQwFTSw6FJqBN2FeAnn9+AIv7HNnCXwm7jC3i4um0iCdPw5T2KJI1jyfFWVj2L0YpF+wxxRrJRQ1bC7a8/nekjBtbA3L8oTLtDOy9DAx55AL23URz068i/JEO0t/lb+I5eeHmGpZaAMPY/LnNK8cYBQXjFqmowmuiwsOdt9IgzyaiWKkI5QQ==',
   }
 
-  file { '/home/BradKnowles':
+  file { '/home/bradknowles':
     ensure  => 'directory',
-    owner   => 'BradKnowles',
+    owner   => 'bradknowles',
     group   => 'puppet',
     mode    => '0750',
-    require => [ User[BradKnowles], Group[puppet] ],
+    require => [ User[bradknowles], Group[puppet] ],
   }
 
-  user { 'BradKnowles':
+  user { 'bradknowles':
     ensure     => 'present',
-    home       => '/home/BradKnowles',
-    comment    => 'BradKnowles',
+    home       => '/home/bradknowles',
+    comment    => 'bradknowles',
     groups     => notice( $groups ),
     gid        => '666',
     shell      => '/bin/bash',
@@ -312,8 +312,8 @@ class profile::users {
     managehome => true,
   }
 
-  ssh_authorized_key { 'BradKnowles':
-    user       => 'BradKnowles',
+  ssh_authorized_key { 'bradknowles':
+    user       => 'bradknowles',
     type       => 'ssh-rsa',
     key        => 'AAAAB3NzaC1yc2EAAAADAQABAAACAQC8DUZLtThaQhBtsTYBnJMQPM94RRNZ3xqqd5LIyCXQt66YHcWGSP0RSevd0oh9ibsgSbrtR+GWs918Oz+pdX0DzzGmHpHV3tcNyD9Vjo/tgEMR1GLgAlln1xKHVy/rOXqqS7e/IoR2+9Z31bjnJJglhIEjC8M7ysa+s5TXEDiUVwAv8Kgus0ovqwkFtfJVe/H1blWPhcjUoe8VAKZDNzpU9LkU34uWmY6kM5ID/UE7G9KMYwSYrv+feCDK8lcoViPkurH+mq6X3xPNCXhgYTZ3EvrAHBLTZ/Wxd/79apfjU9w37mBhDd1C/98CvU6ZkRwe1VcwveIMOu1sAIJiv/aPaSnLXJ+OAOhLfpC//rwhXCbioCxMmZJUguck/9MX2pdewyhfFebIsb285aezfpZFMrZMqWXyeZFgelFujuma7BXP025hsOA3BgHYyKY+ID3b9f5l0im7VyvL7pPmQpHWR5fIcDPHlYc7cHoxrjpL3ZWSGOsSre4UlN4RZ9+0X9KE8qnOJ4CVFgmi3LQqcynqykbtG0VfK3Q2xaK8VHssDG0JvdXBlZF839hKmVIPWlwEVUieGodQ7ZvtnSe9ybVbpcZb09IMm5OQoGkdhiOAtIi5RwB387ahGPSSUApKjf4ccRdqANyKxb9V6/DiAQA6K3erkIGvsPx5X8fnXearSQ==',
   }
@@ -351,7 +351,7 @@ class profile::users {
     require => [ User[tvonmoll], Group[puppet] ],
   }
 
-  user { 'jameskbride':
+  user { 'tvonmoll':
     ensure     => 'present',
     home       => '/home/tvonmoll',
     comment    => 'tvonmoll',
