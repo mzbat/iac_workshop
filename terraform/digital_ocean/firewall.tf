@@ -7,25 +7,25 @@ resource "digitalocean_firewall" "puppet" {
   # In this example, "75.15.12.240" is our public IP address. 
   inbound_rule = [
     {
-      protocol           = "tcp"
-      port_range         = "22"
+      protocol            = "tcp"
+      port_range          = "22"
       #source_addresses   = ["75.15.12.240", "192.168.1.0/24", "2002:1:2::/48"]
-      source_addresses = ["0.0.0.0/0"]
+      source_addresses    = ["0.0.0.0/0"]
     },
     {
-      protocol = "tcp"
-      port_range = "80"
-      source_addresses = ["0.0.0.0/0"]
+      protocol            = "tcp"
+      port_range          = "80"
+      source_addresses    = ["0.0.0.0/0"]
     },
     {
-      protocol = "tcp"
-      port_range = "443"
-      source_addresses = ["0.0.0.0/0"]
+      protocol            = "tcp"
+      port_range          = "443"
+      source_addresses    = ["0.0.0.0/0"]
     },
     {
-      protocol           = "tcp"
-      port_range         = "8140"
-      source_addresses   = ["0.0.0.0/0", "::/0"]
+      protocol            = "tcp"
+      port_range          = "8140"
+      source_addresses    = ["0.0.0.0/0"]
     }
   ]
 
@@ -34,17 +34,17 @@ resource "digitalocean_firewall" "puppet" {
     {
       protocol                = "udp"
       port_range              = "53"
-      destination_addresses   = ["0.0.0.0/0", "::/0"]
+      destination_addresses   = ["0.0.0.0/0"]
     },
     {
-      protocol = "tcp"
-      port_range = "80"
-      destination_addresses = ["0.0.0.0/0"]
+      protocol                = "tcp"
+      port_range              = "80"
+      destination_addresses   = ["0.0.0.0/0"]
     },
     {
-      protocol = "tcp"
-      port_range = "443"
-      destination_addresses = ["0.0.0.0/0"]
+      protocol                = "tcp"
+      port_range              = "443"
+      destination_addresses   = ["0.0.0.0/0"]
     } 
   ]
 }
