@@ -293,6 +293,206 @@ class profile::users {
     key        => 'AAAAB3NzaC1yc2EAAAADAQABAAACAQDcB1fvWAQdhka3l1e3XSYZCIv9BLPMQbu+wwC+g/ssMh2K4VeVQk4exaXsYYJfGR0tfzc/fqZLAIfxhQlVP90xVE5skUZj0HYoKnKyJMa8QJ4wnuk5UqZe8RKmGmJOoDE7YqClxlQf9TQHFps232Qhcz9jvnIrZ4ESj2EponZeUENglcjNBDeYZXVhHB00SPICDOuTac9Z+5kfTcVlhhBCnai/uPopdOlxWh6KpLOqpG53oTnWq9Cj4PMVMfK6Dq/z0MizfKpKvvpeHGvorYuAXCp3ke+wqGtVCzBX8SB5bnLxSwrmeUIDRJmdjhmZuY47/CJw4UNjYY20+LwqOE+9f/4v26EQmG4DBaxfHvOVVYYeHCix9LKXUy/Poo6933aHYwGRtu54aNUlhc0sNq9k2HhwSlQgvvcTib9/U3o6K/cKHHKQyRDNGYtmkeOY6/mZWmlWLIypPwZzsIAz/F+fMkhis3CytMooIZaMh615ltlKyy5ooJSQ2TgQwFTSw6FJqBN2FeAnn9+AIv7HNnCXwm7jC3i4um0iCdPw5T2KJI1jyfFWVj2L0YpF+wxxRrJRQ1bC7a8/nekjBtbA3L8oTLtDOy9DAx55AL23URz068i/JEO0t/lb+I5eeHmGpZaAMPY/LnNK8cYBQXjFqmowmuiwsOdt9IgzyaiWKkI5QQ==',
   }
 
+  file { '/home/BradKnowles':
+    ensure  => 'directory',
+    owner   => 'BradKnowles',
+    group   => 'puppet',
+    mode    => '0750',
+    require => [ User[BradKnowles], Group[puppet] ],
+  }
+
+  user { 'BradKnowles':
+    ensure     => 'present',
+    home       => '/home/BradKnowles',
+    comment    => 'BradKnowles',
+    groups     => notice( $groups ),
+    gid        => '666',
+    shell      => '/bin/bash',
+    uid        => '2608',
+    managehome => true,
+  }
+
+  ssh_authorized_key { 'BradKnowles':
+    user       => 'BradKnowles',
+    type       => 'ssh-rsa',
+    key        => 'AAAAB3NzaC1yc2EAAAADAQABAAACAQC8DUZLtThaQhBtsTYBnJMQPM94RRNZ3xqqd5LIyCXQt66YHcWGSP0RSevd0oh9ibsgSbrtR+GWs918Oz+pdX0DzzGmHpHV3tcNyD9Vjo/tgEMR1GLgAlln1xKHVy/rOXqqS7e/IoR2+9Z31bjnJJglhIEjC8M7ysa+s5TXEDiUVwAv8Kgus0ovqwkFtfJVe/H1blWPhcjUoe8VAKZDNzpU9LkU34uWmY6kM5ID/UE7G9KMYwSYrv+feCDK8lcoViPkurH+mq6X3xPNCXhgYTZ3EvrAHBLTZ/Wxd/79apfjU9w37mBhDd1C/98CvU6ZkRwe1VcwveIMOu1sAIJiv/aPaSnLXJ+OAOhLfpC//rwhXCbioCxMmZJUguck/9MX2pdewyhfFebIsb285aezfpZFMrZMqWXyeZFgelFujuma7BXP025hsOA3BgHYyKY+ID3b9f5l0im7VyvL7pPmQpHWR5fIcDPHlYc7cHoxrjpL3ZWSGOsSre4UlN4RZ9+0X9KE8qnOJ4CVFgmi3LQqcynqykbtG0VfK3Q2xaK8VHssDG0JvdXBlZF839hKmVIPWlwEVUieGodQ7ZvtnSe9ybVbpcZb09IMm5OQoGkdhiOAtIi5RwB387ahGPSSUApKjf4ccRdqANyKxb9V6/DiAQA6K3erkIGvsPx5X8fnXearSQ==',
+  }
+
+  file { '/home/jameskbride':
+    ensure  => 'directory',
+    owner   => 'jameskbride',
+    group   => 'puppet',
+    mode    => '0750',
+    require => [ User[jameskbride], Group[puppet] ],
+  }
+
+  user { 'jameskbride':
+    ensure     => 'present',
+    home       => '/home/jameskbride',
+    comment    => 'jameskbride',
+    groups     => notice( $groups ),
+    gid        => '666',
+    shell      => '/bin/bash',
+    uid        => '2609',
+    managehome => true,
+  }
+
+  ssh_authorized_key { 'jameskbride@valhalla.local':
+    user       => 'jameskbride',
+    type       => 'ssh-rsa',
+    key        => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQC7zL7rt0c4gdWE406j1e+NG1yYBHnyAtEIK86O0RUpOY9w744WM7/uf6qtN+dO/J+fYSINbpAxb8B2D9tciyBCGXmeLNCCD34ItEmvHhZV+18i+iyhkD8IXCutF/fhM9vyKMlMQ+ROieukGUTbvDMXzTRaOz1aImH5P7r3jCkOWiFVpunT/IF/OZvZQTHNjVYiyFnsBffMLNDc8B1lwdRiaR7RW+e5mRGnuYVcC9FExwbKEOik2ZENhqX8uSVmMNlnRxkgt57T/tGCfP+38SGke4zYKw6EQ/DpRJaZmAOKQduid3FZUBmV5q0UOWVx4skl6nC1qGR8aahq4vAnNCjj',
+  }
+
+  file { '/home/tvonmoll':
+    ensure  => 'directory',
+    owner   => 'tvonmoll',
+    group   => 'puppet',
+    mode    => '0750',
+    require => [ User[tvonmoll], Group[puppet] ],
+  }
+
+  user { 'jameskbride':
+    ensure     => 'present',
+    home       => '/home/tvonmoll',
+    comment    => 'tvonmoll',
+    groups     => notice( $groups ),
+    gid        => '666',
+    shell      => '/bin/bash',
+    uid        => '2610',
+    managehome => true,
+  }
+
+  ssh_authorized_key { 'tvonmoll@gmail.com':
+    user       => 'tvonmoll',
+    type       => 'ssh-rsa',
+    key        => 'AAAAB3NzaC1yc2EAAAADAQABAAACAQDyYWjb7ddXPZdwttCWj4KRiQQB3dvoxSGWxLPGa3mb46H+8Foam+gAuMNVpo6zNSbmWIMhiVpT2pKz+e3aADQCi64duNjdk+/XOvBIvyt+2m1D520dmP1OZSgtO1DEAcQbUYdJh/7UZZE78uBEkiyyWzbECQUFP2R0B3qR6XN8Air91BmO3ahuDk3OA92W6nARrcnmRJocmfXvRXnYUfHOsfUqsH9XRJ2Ou/fk5Qffq6xpoFwWTIFCQ+2PJcQEE1w00HRqe6MC3uX3U/Xbv3m+lUKfGaXWtYFFfXUmWYYP3MuWnbDEf0WxLiC7tB08XXCADQ9cz/Ypo0lcDl/MYAL041iS9U/rFfy34W6Y7K5AQEEPB995iqj/+y6kjfcyuyK0TU9AX/pww1zKzBq7UzGH7fvDdNkgtbi4OQ18eEl2gh7nNjGcHTmcIXn3zZKVYSyVBwTT6aFLW/lCWbjpvmax4BP6b2G3jQEgMYPkDBprCIuZ5gC+ILKAcozcWllmbQTOnudGSp72YDtR9Jkc1Rg9YjLLWlMmonqIsAoa8p/0sJIxayQxLn4iZWYSsDWBcK/t39uAG60NmpfXukbGsotuUI3SCd14FVJ1p0AMlNmW0ibiF4GVlgkpz5QE7NLjGOa5Cq4vV+1uGkW+Mt7Qq+Wm9XiCnjxnvOLiXTANV5eI4w== ',
+  }
+
+  file { '/home/tzm293':
+    ensure  => 'directory',
+    owner   => 'tzm293',
+    group   => 'puppet',
+    mode    => '0750',
+    require => [ User[tzm293], Group[puppet] ],
+  }
+
+  user { 'tzm293':
+    ensure     => 'present',
+    home       => '/home/tzm293',
+    comment    => 'tzm293',
+    groups     => notice( $groups ),
+    gid        => '666',
+    shell      => '/bin/bash',
+    uid        => '2611',
+    managehome => true,
+  }
+
+  ssh_authorized_key { 'tzm293@msn.com':
+    user       => 'tzm293',
+    type       => 'ssh-rsa',
+    key        => 'AAAAB3NzaC1yc2EAAAADAQABAAACAQCbhsWdhZFnKD7a9oJyZD4W6vSmcV+7i+/dQfBuNPVjVAaeYHrcuD2d9XWuwymCRwSD8ccERCbIjoe0M31xDZbtiNpDnmnSIo21TS9X1kMQWcm2I6s2r9mQ/XXMoSScysFmH6UZFMrIf/rFZNBz9+0mc293XHJBkUlbc00t6WURCDN8m+34BH4+H/TCbKhZ2FL4VU6ZGNmobAK5oHozYiBLgX4RYRNqQx41XceE0kMw7p7FD1Iay8s5F2gY8qCzhD6Nahzuk2DB2ZRDAHV78o0tcHqrSzqpZZ7f/M2mD2GRoB+9IAMITGgoPg98bPA+4R1MSVEWnLUbD+Ilx8lcDVoeNJDAFnoi7IN0e6WVev9NEah/M95rs+rCoPPQENuzCuqP0gyXu9l+UAknJihTK0tI9ZnioJqdbGSZXQxR312zFUUXenDmj35B43+Z3wNhLeB/gnHHjtsL8FFhR/LTEgwaXICfJHPrfixNkWn+XD71YjaYY6H8Ei1VIKUPEAZEBihN/1h+UONPVBYdYK3z44wAps2weKWEJ2LLiDIrfCtmj5v64Au+JOtzSeFVAJDSgfVjJJIOB5t7CD3958/Pr0DUOjXI+LqsaJ1L14RC0jn0hZ8fbHBSbUQ6zqoXy6SdUZ0wULMVnB4lTjfpa/GhDhRRxJz4RYuh0Tz8nD/Kr929uQ==', 
+  }
+
+  file { '/home/mgrecar':
+    ensure  => 'directory',
+    owner   => 'mgrecar',
+    group   => 'puppet',
+    mode    => '0750',
+    require => [ User[mgrecar], Group[puppet] ],
+  }
+
+  user { 'mgrecar':
+    ensure     => 'present',
+    home       => '/home/mgrecar',
+    comment    => 'mgrecar',
+    groups     => notice( $groups ),
+    gid        => '666',
+    shell      => '/bin/bash',
+    uid        => '2612',
+    managehome => true,
+  }
+
+  ssh_authorized_key { 'mgrecar@gmail.com':
+    user       => 'mgrecar',
+    type       => 'ssh-rsa',
+    key        => 'AAAAB3NzaC1yc2EAAAADAQABAAACAQC9oj1FReGWE9WKHVzaY4bSmQ6zSVBWkcBk0o612t42uSYXPWsjnx5Y4ewpa+KKNe2WzfVKY3XosRRM6zyZKy9huPqDpqdNuPOD3kbFTpmOHEpsqB4edmG4jrUp8Q6k2VyD1Xn7tbSdwKt4wSmpx1vSNHYViYuUospPoWkJW8J1MC4Thppm3jVnwg1Em4EiSI+0Mkdl1/vdRuVVBFLaK8SqYRnLU+wdY+sxGYSZep9N8Tfvdj17a7Sh0RLFFEYFzj7RwsS8gnJvQFO37lICKWbTdM5U+maB9vynJbywZaXpZUr71RYVuzE8VeXNmRdlpzT+aLzVVRovFSbwlloUtGsr1GkDI87MeGn7/7ikC0k6aBZKz21ZyRkLKAwD/bJNUZhSG99f+RQ83TSJv+QmPz/omkifTG6wxgHaniAOwNpzNHYI19C4Yex7Fzg7boPi8ac59pqWnlt14BWdMDR5C5n7ElEg1M2p2KKWK5IdE7eiMSCCInBNCaCkaWQQQ7dD9Jsl0RzUgbY4I4rF9GV5RpXm3/adb7PsRESRihWvSnfjqEflUM663h6iP9oGCKSxZhqCxzHm2Eggkpel4DzVWBFQa2/iJ7f2zyF9Si+zsxMrTCTcHWeDQtEuNJjsyhqW15tLoEz1qfFVnzDmSlGHd+WlLb3l3s+lKUEtpMVy3dPsXw==',
+  }
+
+  file { '/home/yamikuronue':
+    ensure  => 'directory',
+    owner   => 'yamikuronue',
+    group   => 'puppet',
+    mode    => '0750',
+    require => [ User[yamikuronue], Group[puppet] ],
+  }
+
+  user { 'yamikuronue':
+    ensure     => 'present',
+    home       => '/home/yamikuronue',
+    comment    => 'yamikuronue',
+    groups     => notice( $groups ),
+    gid        => '666',
+    shell      => '/bin/bash',
+    uid        => '2613',
+    managehome => true,
+  }
+
+  ssh_authorized_key { 'yamikuronue@gmail.com':
+    user       => 'yamikuronue',
+    type       => 'ssh-rsa',
+    key        => 'AAAAB3NzaC1yc2EAAAADAQABAAACAQDLNIBUZ1VmJmM8gGDYXQn+WG9A0kURajhLMsCpqEgUiv5x9+ESD+VoUVRyz+zxxazLQ+5IakjfgxrcFn9COZrYl3zEvyTqd+jOB/09easzln+4n+o1J3kNDkvz+RFDSHXlMqR5DOb4w0n+E4IrXFiQFlHDksBrw/mQHsAmq0HgfanMQ24IktUmdk7E2jLJW02nbS//BYR2B5N+SU6XN0Ylc4DeRanbUajAWi/+W2gGbOlCiTgt5tZdQdPypnKsbHAmk+aCSeyUcK0K19yISx+LXivLKe6WtTAl6SlNKgLeUZ3woOfr6RQQFgoAd+3erIFvO4xnljZqPSleIs3LCjGsi2rSxH/EzMBawYd0CNhVi3CncNsT1pKDaZ6yIQXvkV/OT53IYbHE6LgsJXrxDd91AabQq2hlDUsju8m6Hhus+sV/cPlGUZIHycIHgMRheSUQCpZvo0E8ShshhhM6dIxIdfnuxgU3pLy0tti1LESDOoUl5AFPH4tSNlc4IAfwVsmWsl6FTwRtN2ZP4bt3ZormxZGJf6Tkf2i28m3MVQg4DExiaSPPi7tmuIN6GGco2yznvnPWvd1XFqV6K3sbHwOsr+QEUukYNrN1syRjQOUj2/Ivli17SUVRjip4xpgljYq6km7E6T1US4ZyjWJwFbdQOYgQSUAoVvQvZTkUZQ+LXw==',
+  }
+
+  file { '/home/danmit88':
+    ensure  => 'directory',
+    owner   => 'danmit88',
+    group   => 'puppet',
+    mode    => '0750',
+    require => [ User[danmit88], Group[puppet] ],
+  }
+
+  user { 'danmit88':
+    ensure     => 'present',
+    home       => '/home/danmit88',
+    comment    => 'danmit88',
+    groups     => notice( $groups ),
+    gid        => '666',
+    shell      => '/bin/bash',
+    uid        => '2614',
+    managehome => true,
+  }
+
+  ssh_authorized_key { 'dnlm88@sbcglobal.net':
+    user       => 'danmit88',
+    type       => 'ssh-rsa',
+    key        => 'AAAAB3NzaC1yc2EAAAADAQABAAACAQDkysyED2Wap09saNQp32BH2hMlwLy4oU8Xccw/ZKw3ncUQ8GesnYD3Y+GfuGygcd+UxdXhQn/U0Hm1+1pSa0fl/0G5bOZ+Wpwg46vlU9WJtlohMLPui0Zfb0TCSBO86BE9mD3V3GLqZx0m7eculA91/yi7m8k2/mRqwqQ5VC64AjTJXQx4PlHsRF3Xg3wcGdQCCA041ep3QmN3JcGSAllwLOGSJQKQCusGhwsrXvpi15StpFsXTJhyA+A1yfJ/z0yMOgtwWBRLldoGzEpwlzR3BalBebs3xtCzSa6ruL1p7ZF3Sj9r8vnGEz2ujA05T4SO7orkerzH0KpaU/OXWGTj1ys3OicvsmyZsvDGWRi52J7PBcIL5xA4OI9ts78Tg0bdzaMjgJytguxLxN3BLTNIX5eKo/fRwaEWT+wknU0yR3UDdfia/pvbYIeiOLoy3X77NCT/Liy4wuoKir6WHvdKcu1UxJRuZanOBypgaV4qDafyrLd/NrhpFLpELirkun6wm3C+CQyV7g/vGprmXww+hpVGsViWl5SI7zhSpkWwAUQnyvdq7CcgbB44j+zvjOVlcuvfi+/HwNJ4YueJYv1pWY4/WbauF24kjyWz0V9FQliKdd3xW6+MW6uctQ2mKvibLIGlApYUk3QRQABtn7LI4rdAb41PL4W9DVE9Psi7cQ=', 
+  }
+
+  file { '/home/alan':
+    ensure  => 'directory',
+    owner   => 'alan',
+    group   => 'puppet',
+    mode    => '0750',
+    require => [ User[alan], Group[puppet] ],
+  }
+
+  user { 'alan':
+    ensure     => 'present',
+    home       => '/home/alan',
+    comment    => '8',
+    groups     => notice( $groups ),
+    gid        => '666',
+    shell      => '/bin/bash',
+    uid        => '2615',
+    managehome => true,
+  }
+
+  ssh_authorized_key { 'alan@bondbunch.com':
+    user       => 'alan',
+    type       => 'ssh-rsa',
+    key        => 'AAAAB3NzaC1yc2EAAAADAQABAAACAQDbVRwJSPJGyvQSCM5nRl7XtkoIWHJtPeOhckmtnnp6sfdnnG0nEeEEdaK9Ho6ggT0Elr7yG3Aawn4BjFxYPxebjSXYDwvDGSjbofd/umGq1Kgx9qnbGv8hvoe8C22bGVftAKBw94ZljQL2siZnDulwBfDKChPIiZ26r/Whaemzm5/7Mz1BvVVuBPaahK2Dt/6RjmfbuIIwHVTxMN0Bl/xvDX8p+GoVJD1PuKmaWX3WfDDc896K81f6AxwxoVaraLePjNpKDf3O6vkQs52ZWESFNkXWguZ3NIYmxFIwNeVVGNswwu77vN4M/PVl+WsefrkiL0AKLSZB992JMwok2tAyTxANh22TCnPPetIC0uSq+v+W9pYNls5+HByzfUxhZVUJv0D28bhk5fZIag8NnBpi5FiIGy1LN7f95Ep6uePvoTk4QnGaR4z8p7khoaIQkPWLswdMljIPsxclR2iiHZ4ftqjb2cX2ZLgL68ESo3LcI1cCOsopLv3Goa8rnRV4r2GvVIpC5man11Nb1eybqnBwtSbnkojgEPmB1+K8klmXacjuu0ffNOtbE6Oghtdx6VqSrDpAc3/9OH4/S8mG/xiMU3ipx8kf8bZW/EGG0z8psnB2uluwtm6067tw2z96QY1nsdkj8pxAd26Bt1Gr+Uw/QLjTT/MP8wYKGJ53utZsQw==',
+  }
+
   # This comes from ../lib/facter/homedirs.rb
   $facts['homedirs'].each |$homedir| {
     file { "/home/${homedir}/.bashrc":
