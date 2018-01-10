@@ -493,6 +493,81 @@ class profile::users {
     key        => 'AAAAB3NzaC1yc2EAAAADAQABAAACAQDbVRwJSPJGyvQSCM5nRl7XtkoIWHJtPeOhckmtnnp6sfdnnG0nEeEEdaK9Ho6ggT0Elr7yG3Aawn4BjFxYPxebjSXYDwvDGSjbofd/umGq1Kgx9qnbGv8hvoe8C22bGVftAKBw94ZljQL2siZnDulwBfDKChPIiZ26r/Whaemzm5/7Mz1BvVVuBPaahK2Dt/6RjmfbuIIwHVTxMN0Bl/xvDX8p+GoVJD1PuKmaWX3WfDDc896K81f6AxwxoVaraLePjNpKDf3O6vkQs52ZWESFNkXWguZ3NIYmxFIwNeVVGNswwu77vN4M/PVl+WsefrkiL0AKLSZB992JMwok2tAyTxANh22TCnPPetIC0uSq+v+W9pYNls5+HByzfUxhZVUJv0D28bhk5fZIag8NnBpi5FiIGy1LN7f95Ep6uePvoTk4QnGaR4z8p7khoaIQkPWLswdMljIPsxclR2iiHZ4ftqjb2cX2ZLgL68ESo3LcI1cCOsopLv3Goa8rnRV4r2GvVIpC5man11Nb1eybqnBwtSbnkojgEPmB1+K8klmXacjuu0ffNOtbE6Oghtdx6VqSrDpAc3/9OH4/S8mG/xiMU3ipx8kf8bZW/EGG0z8psnB2uluwtm6067tw2z96QY1nsdkj8pxAd26Bt1Gr+Uw/QLjTT/MP8wYKGJ53utZsQw==',
   }
 
+  file { '/home/zvercodebender':
+    ensure  => 'directory',
+    owner   => 'zvercodebender',
+    group   => 'puppet',
+    mode    => '0750',
+    require => [ User[zvercodebender], Group[puppet] ],
+  }
+
+  user { 'zvercodebender':
+    ensure     => 'present',
+    home       => '/home/zvercodebender',
+    comment    => '8',
+    groups     => notice( $groups ),
+    gid        => '666',
+    shell      => '/bin/bash',
+    uid        => '2616',
+    managehome => true,
+  }
+
+  ssh_authorized_key { 'rick@goofy':
+    user       => 'zvercodebender',
+    type       => 'ssh-rsa',
+    key        => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQC0fBYDNGarDtTTOhNMpvDO7mcCPrV78X4KiYfYFY0N1MTe+yKKhNpRcFx/0irG0/64TXMadUJz5j0kXlVJuQsn+TwYRbRMKIinMysnPqf4l+4J2T9yIjUjfCZN9vv/CixANlaDB9KgQdsvXVg1EL+AsN2qnrl+AEXUZ1jAIV65FBQbmLfzsndrKw90qD2MOtn7UW62NAGD+bzADcJwisWpzq52TpKW/F5KgoL6ni8bW97IFNnWte9EUikgNq+RrfByiIAyCDw/MQ42yrFj96aKHeeZYnodX0aaCHcH/PY4y6EBl+i+mQ1uAaMMdul1LKs08EaX5jJb5+7NrLnsl6/n', 
+  }
+
+  file { '/home/dsvarmette':
+    ensure  => 'directory',
+    owner   => 'dsvarmette',
+    group   => 'puppet',
+    mode    => '0750',
+    require => [ User[dsvarmette], Group[puppet] ],
+  }
+
+  user { 'dsvarmette':
+    ensure     => 'present',
+    home       => '/home/dsvarmette',
+    comment    => '8',
+    groups     => notice( $groups ),
+    gid        => '666',
+    shell      => '/bin/bash',
+    uid        => '2617',
+    managehome => true,
+  }
+
+  ssh_authorized_key { 'dsvarmette@ra.rockwell.com':
+    user       => 'dsvarmette',
+    type       => 'ssh-rsa',
+    key        => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQDCa6O4Df2s/YMiT5iPZunJXJ0qqq5HIEt69JHwlI23C4H/1HDteX7iotsAGppuuc3EEVYpnzGkOlaplf9p7Ced88G3Yf+vBI1z2+J+brVTK4QZOODmzEcm7i0PrHXRfojapBsOLJwu5FJANxvyGaYfUMH4yAgzNnINRm8VepfOPnWqjvtlI4ufePwUVlkaEk59GZNZFaF7XldRCIJJO/d8fpC1L/rWqZzi66/62+gG9jD/9nHXMCJVJTGhbTDkW9/FBOceOG5zqXo8byFtDQK8PjTsNOWC+3E2P8wZjYkxi31rymI18/KcjXzU+iFP7rZ/Qx0hZNf/y5uTOob7qbPl',
+  } 
+
+  file { '/home/grassfedphil':
+    ensure  => 'directory',
+    owner   => 'grassfedphil',
+    group   => 'puppet',
+    mode    => '0750',
+    require => [ User[grassfedphil], Group[puppet] ],
+  }
+
+  user { 'grassfedphil':
+    ensure     => 'present',
+    home       => '/home/grassfedphil',
+    comment    => '8',
+    groups     => notice( $groups ),
+    gid        => '666',
+    shell      => '/bin/bash',
+    uid        => '2618',
+    managehome => true,
+  }
+
+  ssh_authorized_key { 'parlihpb@gmail.com':
+    user       => 'grassfedphil',
+    type       => 'ssh-rsa',
+    key        => 'AAAAB3NzaC1yc2EAAAADAQABAAACAQCrDV5OKeR5WRX7wovzFxSu9ObgEcHsB7jQzZRTAzfqpnK8c81mWIGSLJPyrJdXntfJcR/Etb2rulj3zm46fbGqBneJDVZBbIRgLJOxAIBW0zUjQetxXL66gtV5d6NO2WZJIkPG746FK4kRPK2igmiE5j2FTYiTHlCO4KUO/WjUx0eJ8ay+MuVe/8Lei0QfzDvCXmlChnfiQmCoHXUNMt8R4KEL5S1Dezyp9yG1UErL9uNUv64knTt6jW3am2ENCX9p26I8jHVmXDFmdnaUclNAPAAgCsV1B1qd+1Fr3hoxNZZ7xH5DQravWAZTHFCOyE0CtbmTeN44q8mfBRqI2gH93HCLHy9Fgqxa2Lc3fXkMDNuyUAZPjHtKwTHHSQXl9tapgF0IghJlUZolg14g4wnmIxy37uKQEMgzoo2EnfFnxD2IqpV001dwSXEOomtfBK/MD9FdSoZO0UW2M8nWOfGgOFOuSymfwdPovOSQtCyvgDMhvPpmdp+vJ0eXO5NZPFbcPx2Xu+NggdutFsd4TgUe5wG+YcW8xkBhEZFjA1OMrk02hMH3P/5pHzz3wxDitHK0ATwD5RFM+JzPnjU26ZfO2I9WEjaT4ZWKxOnHT+QM9ycx2WRE5JPaqG3KuhMIlc9sNted4i+xMrH7f7VaOfJ1D9Ltc0qgfUKMbpo9P8LluQ==',
+  }
+
   # This comes from ../lib/facter/homedirs.rb
   $facts['homedirs'].each |$homedir| {
     file { "/home/${homedir}/.bashrc":
