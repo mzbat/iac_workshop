@@ -27,6 +27,7 @@ function setup_puppet {
 ###############
 function setup_ruby {
   echo "gem: --no-document" > ~/.gemrc
+  apt-get install ruby-full -y
   /opt/puppetlabs/puppet/bin/gem install puppet-lint
   # unable to find this gem? 
   #/opt/puppetlabs/puppet/bin/gem install puppet-bolt
@@ -47,7 +48,8 @@ function fix_msgpack {
 function install_terraform {
   
   wget -P /tmp https://releases.hashicorp.com/terraform/0.11.1/terraform_0.11.1_linux_amd64.zip
-  unzip /tmp/terraform_0.11.1_linux_amd64.zip
+  apt-get install -y zip unzip
+  /usr/bin/unzip /tmp/terraform_0.11.1_linux_amd64.zip
   mv /tmp/terraform /usr/local/bin
   return 0 
 } # //install_terraform
