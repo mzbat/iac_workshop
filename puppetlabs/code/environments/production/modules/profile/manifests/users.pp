@@ -180,9 +180,9 @@ class profile::users {
       replace => true,
       owner   => $::homedir,
     }
-    file { "/home/${::homedir}/.bash_profile":
+    file { "/home/$homedir/.bash_profile":
       ensure  => file,
-      source  => 'puppet://modules/modules/profile/bash_profile',
+      source  => 'puppet://modules/profile/bash_profile',
       mode    => '0644',
       replace => true,
       owner   => $::homedir,

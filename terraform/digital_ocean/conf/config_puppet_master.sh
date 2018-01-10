@@ -29,7 +29,7 @@ function fix_puppet {
   sed -i '/master/a   always_cache_features = true' /etc/puppetlabs/puppet/puppet.conf
   sed -i '/main/a      server = puppet.bitsmasher.net' /etc/puppetlabs/puppet/puppet.conf 
   # this is to stop the msgpack errors
-  apt-get install -y ruby-msgpack
+  /opt/puppetlabs/puppet/bin/gem install msgpack
   sed -i '/main/a      preferred_serialization_format =  msgpack' /etc/puppetlabs/puppet/puppet.conf
   return 0
 }
@@ -95,9 +95,10 @@ function main {
   systemctl enable puppetserver
   #systemctl is-active puppetserver
   apt-get -y install "build-essential"
-  /opt/puppetlabs/puppet/bin/gem install msgpack
   #/opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
   bash /root/sync_git_master.sh -p
+  /usr/sbin/ufw allow 8140/tcp
+
 }
 
 if [ -z "$ARGS" ] ; then
