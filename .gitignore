@@ -7,6 +7,7 @@
 
 # This has some private key info
 terraform/aws/terraform.tfvars
+terraform/aws/plan
 #
 .terraform.tfstate.lock.info
 

@@ -10,13 +10,13 @@ resource "aws_ebs_volume" "iac" {
   size              = 10
   type              = "gp2"
   tags {
-    Name = "franklin-iac-storage"
+    Name = "lnxdork-iac-storage"
   }
 }
 
-resource "aws_volume_attachment" "ebs_franklin_iac" {
+resource "aws_volume_attachment" "ebs_lnxdork_iac" {
   device_name  = "/dev/sdf"
   volume_id    = "${aws_ebs_volume.iac.0.id}"
-  instance_id  = "${aws_instance.franklin-iac.id}"
+  instance_id  = "${aws_instance.lnxdork-iac.id}"
   force_detach = true 
 }
