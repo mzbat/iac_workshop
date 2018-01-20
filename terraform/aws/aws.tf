@@ -15,7 +15,7 @@ resource "aws_internet_gateway" "default" {
 }
 
 resource "aws_route_table_association" "a" {
-  subnet_id      = "${aws_subnet.franklin-iac.id}"
+  subnet_id      = "${aws_subnet.lnxdork-iac.id}"
   route_table_id = "${aws_vpc.main.main_route_table_id}"
 }
 
@@ -27,18 +27,18 @@ resource "aws_route" "internet_access" {
 }
 
 # Create a subnet to launch our instances into
-resource "aws_subnet" "franklin-iac" {
+resource "aws_subnet" "lnxdork-iac" {
   vpc_id                  = "${aws_vpc.main.id}"
   cidr_block              = "10.0.1.0/24"
   availability_zone       = "${var.availability_zone}"
   map_public_ip_on_launch = true
 }
 
-resource "aws_key_pair" "franklin" {
+resource "aws_key_pair" "pub_cert" {
   key_name   = "${var.key_name}"
   public_key = "${var.public_key}"
 }
 
 output "sensor_ip" {
-  value = "Now do this: \n ssh -i ${var.key_path} -l centos ${aws_instance.franklin-iac.public_ip}"
+  value = "Now do this: \n ssh -i ${var.key_path} -l centos ${aws_instance.lnxdork-iac.public_ip}"
 }
